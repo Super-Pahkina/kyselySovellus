@@ -1,5 +1,6 @@
 package superpähkinä.ohjelmistoprojekti.webcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import superpähkinä.ohjelmistoprojekti.domain.Kysely;
 import superpähkinä.ohjelmistoprojekti.domain.KyselyRepository;
+import superpähkinä.ohjelmistoprojekti.domain.Kysymys;
 import superpähkinä.ohjelmistoprojekti.domain.KysymysRepository;
 
 
@@ -38,17 +40,23 @@ public class KyselyController {
 		//Lisää kyselyn
 		@RequestMapping(value = "/add")
 		public String addKysely(Model model) {
+			List<Kysymys> kysymykset = new ArrayList<Kysymys>();
+			model.addAttribute("kysymykset", kysymykset);
 			model.addAttribute("kysely", new Kysely());
-			model.addAttribute("kysymys", kysymysRepository.findAll());
 			return "addkysely";
 		}
 
 		//tallentaa kyselyn
-		@RequestMapping(value = "/save", method = RequestMethod.POST)
+		@RequestMapping(value = "/savekysely", method = RequestMethod.POST)
 		public String save(Kysely kysely) {
 			kyselyRepository.save(kysely);
 			return "redirect:kyselylist";
-		}	
+		}
+		//tallentaa kyssärin
+		@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
+		public String save(Kysymys kysymys) {
+			kysymysRepository.save(kysymys);
+			return "redirect:addkysely";
 	}
-
+}
 
