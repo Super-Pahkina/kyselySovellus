@@ -28,6 +28,12 @@ public class KyselyController {
 		@Autowired
 		private KysymysRepository kysymysRepository;
 
+		//Listaa kyselyt
+		@RequestMapping("/kyselylist")
+		public String bookList(Model model) {
+			model.addAttribute("kyselyt", kyselyRepository.findAll());
+			return "kyselylist";
+		}
 	
 		//Lisää kyselyn
 		@RequestMapping(value = "/add")
