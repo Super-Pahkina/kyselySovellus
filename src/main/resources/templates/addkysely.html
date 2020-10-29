@@ -8,6 +8,7 @@
 <body>
 
 	<h1>Luo uusi kysely</h1>
+	
 	<ul th:each= "kysymys:${kysymykset}">
 		<li th:text= "${ kysymys.kysymys }"></li>
 	</ul>
@@ -16,6 +17,7 @@
 	<form th:object="${kysymys}" th:action="@{saveKysymys}" action="#" method="post">
 		<label for="kysymys">Kysymys: </label>
 		<input type="text" id="kysymys" th:field="*{kysymys}" /></br>
+		<input type="hidden" value={kysymykset} />
 		<input type="submit" value="Save"></input>
 	</form>
 	
