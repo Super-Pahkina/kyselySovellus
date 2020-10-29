@@ -48,7 +48,8 @@ public class KyselyController {
 
 		//tallentaa kyselyn
 		@RequestMapping(value = "/savekysely", method = RequestMethod.POST)
-		public String save(Kysely kysely) {
+		public String save(Kysely kysely, List<Kysymys> kysymykset) {
+			kysely.setKysymykset(kysymykset);
 			kyselyRepository.save(kysely);
 			return "redirect:kyselylist";
 		}
