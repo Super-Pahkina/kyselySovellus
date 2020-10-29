@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import java.time.LocalDate;
 
@@ -14,6 +16,10 @@ public class Kysely {
 	private long kysely_id;
 	private String nimi;
 	private LocalDate luontipvm;
+	
+	@ManyToOne
+	@JoinColumn(name = "kysymys_id")
+	private Kysymys kysymys;
 	
 	public Kysely() {
 		
