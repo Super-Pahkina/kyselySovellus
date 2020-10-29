@@ -1,13 +1,16 @@
 package superpähkinä.ohjelmistoprojekti.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Kysely {
@@ -16,18 +19,17 @@ public class Kysely {
 	private long kysely_id;
 	private String nimi;
 	private LocalDate luontipvm;
-	
-	@ManyToOne
-	@JoinColumn(name = "kysymys_id")
-	private Kysymys kysymys;
-	
-	public Kysely() {
-		
-	}
-	
-	public Kysely(long kysely_id, String nimi) {
 
-		this.kysely_id = kysely_id;
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysymys")
+	private List<Kysymys> kysymykset;
+
+	public Kysely() {
+
+	}
+
+	public Kysely(String nimi) {
+
 		this.nimi = nimi;
 		this.luontipvm = LocalDate.now();
 	}
@@ -56,10 +58,18 @@ public class Kysely {
 		this.luontipvm = luontipvm;
 	}
 
+	public List<Kysymys> getKysymykset() {
+		return kysymykset;
+	}
+
+	public void setKysymykset(List<Kysymys> kysymykset) {
+		this.kysymykset = kysymykset;
+	}
+
 	@Override
 	public String toString() {
-		return "Kysely [kysely_id=" + kysely_id + ", nimi=" + nimi + ", luontipvm=" + luontipvm + "]";
+		return "Kysely [kysely_id=" + kysely_id + ", nimi=" + nimi + ", luontipvm=" + luontipvm + ", kysymykset="
+				+ kysymykset + "]";
 	}
-	
 
 }
