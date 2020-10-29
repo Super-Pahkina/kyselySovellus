@@ -33,6 +33,12 @@ public class Kysymys {
 		this.kysely = kysely;
 	}
 
+	public Kysymys(String kysymys, Kysely kysely) {
+		super();
+		this.kysymys = kysymys;
+		this.kysely = kysely;
+	}
+
 	public Long getKysymys_id() {
 		return kysymys_id;
 	}
