@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import superpähkinä.ohjelmistoprojekti.domain.Kysely;
+import superpähkinä.ohjelmistoprojekti.domain.KyselyRepository;
 import superpähkinä.ohjelmistoprojekti.domain.KysymysRepository;
 
 
