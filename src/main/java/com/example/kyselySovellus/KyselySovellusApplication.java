@@ -43,7 +43,7 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			*/
 			/* luodaan ensin tyhjä kysely
 			 * luodaan kysymys kerrallaan, kysymyksellä on viittaus kyselyyn
-			 */
+			
 			List<Kysymys> kysymykset=new ArrayList<>();
 			kysymykset.add(new Kysymys("teksti",true, "Mitä elokuvaa suosittelet?"));
 			kysymykset.add(new Kysymys("teksti",true, "Mitä tv-sarjaa suosittelet?"));
@@ -51,7 +51,8 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 		
 			log.info("saving kysely");
 			kyselyrepo.save(new Kysely("Kulttuurivinkkaus-kysely Syksy 2020", "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa.", kysymykset));
-			
+			 */
+			kyselyrepo.save(new Kysely("Kulttuurivinkkaus-kysely Syksy 2020", "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa.", null));
 		};
 		
 	}
