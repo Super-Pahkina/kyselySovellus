@@ -38,6 +38,10 @@ public class Kysymys {
 		this.kysymys = kysymys;
 		this.kysely = kysely;
 	}
+	
+	public Kysymys() {
+		
+	}
 
 	public Long getKysymys_id() {
 		return kysymys_id;
