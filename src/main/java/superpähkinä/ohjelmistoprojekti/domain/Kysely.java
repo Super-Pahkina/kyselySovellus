@@ -19,7 +19,7 @@ public class Kysely {
 	private long kysely_id;
 	private String nimi;
 	private String kuvaus;
-	private LocalDate luontipvm;
+//	private LocalDate luontipvm;
 
 	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysymys")
@@ -34,7 +34,7 @@ public class Kysely {
 	public Kysely(String nimi, String kuvaus, List<Kysymys> kysymykset) {
 		this.nimi = nimi;
 		this.kuvaus = kuvaus;
-		this.luontipvm = LocalDate.now();
+	//	this.luontipvm = LocalDate.now();
 		this.kysymykset = kysymykset;
 	}
 
@@ -44,7 +44,7 @@ public class Kysely {
 
 		this.nimi = nimi;
 		this.kuvaus = kuvaus;
-		this.luontipvm = LocalDate.now();
+	//	this.luontipvm = LocalDate.now();
 	}
 
 	public long getKysely_id() {
@@ -62,7 +62,7 @@ public class Kysely {
 	public void setNimi(String nimi) {
 		this.nimi = nimi;
 	}
-
+/*
 	public LocalDate getLuontipvm() {
 		return luontipvm;
 	}
@@ -70,7 +70,7 @@ public class Kysely {
 	public void setLuontipvm(LocalDate luontipvm) {
 		this.luontipvm = luontipvm;
 	}
-
+*/
 	public List<Kysymys> getKysymykset() {
 		return kysymykset;
 	}
@@ -89,8 +89,11 @@ public class Kysely {
 
 	@Override
 	public String toString() {
-		return "Kysely [kysely_id=" + kysely_id + ", nimi=" + nimi + ", kuvaus=" + kuvaus + ", luontipvm=" + luontipvm
-				+ ", kysymykset=" + kysymykset + "]";
+		return "Kysely [kysely_id=" + kysely_id + 
+				", nimi=" + nimi + 
+				", kuvaus=" + kuvaus + 
+	//			", luontipvm=" + luontipvm + 
+				", kysymykset=" + kysymykset + "]";
 	}
 
 
