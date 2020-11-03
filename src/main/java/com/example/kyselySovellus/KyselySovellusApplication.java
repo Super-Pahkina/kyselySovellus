@@ -65,7 +65,6 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			kysymysrepo.save(toka);
 			kysymysrepo.save(kolmas);
 			
-			
 		};
 		
 	}

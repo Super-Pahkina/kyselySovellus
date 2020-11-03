@@ -56,12 +56,26 @@ public class KyselyController {
 			return "redirect:kyselylist";
 		}
 
-		//REST hakee kyselyn kysymykset
-		@RequestMapping(value="/kyselyt/{id}/kysymykset", method = RequestMethod.GET)
-		public @ResponseBody List<Kysymys> getKysymyksetRest(@PathVariable Long id) {
-			Optional<Kysely> haettava = kyselyRepository.findById(id);
-			List<Kysymys> kysymykset = haettava.get().getKysymykset();
-			return kysymykset;
+		//REST hakee kaikki kyselyt
+		@RequestMapping(value="/kyselyt")
+		public @ResponseBody List<Kysely> getAllKyselyt(){
+			return (List<Kysely>) kyselyRepository.findAll();
 		}
+		
+		//REST hakee kaikki kysymykset
+		@RequestMapping(value="/kysymykset")
+		public @ResponseBody List<Kysymys> getAllKysymykset(){
+			return (List<Kysymys>) kysymysRepository.findAll();
+		}
+		
+		//REST tietyn kyselyn kysymykset KESKEN!!!
+		//@RequestMapping(value ="/kysymykset/{kyselyid}")
+		//public @ResponseBody List<Kysymys> getKyselynKysymykset(@PathVariable kyselyid){
+			
+			
+		//}
+		
+		
+	
 }
 
