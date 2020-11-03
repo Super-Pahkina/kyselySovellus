@@ -62,6 +62,12 @@ public class KyselyController {
 			return (List<Kysely>) kyselyRepository.findAll();
 		}
 		
+		//REST hakee yhden kyselyn
+		@RequestMapping(value="/kyselyt/{id}")
+		public @ResponseBody Optional<Kysely> findKysely(@PathVariable Long id){
+			return kyselyRepository.findById(id);
+		}
+		
 		//REST hakee kaikki kysymykset
 		@RequestMapping(value="/kysymykset")
 		public @ResponseBody List<Kysymys> getAllKysymykset(){
