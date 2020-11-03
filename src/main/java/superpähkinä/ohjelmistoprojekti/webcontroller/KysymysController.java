@@ -29,10 +29,17 @@ public class KysymysController {
 	private KysymysRepository kysymysRepository;
 	
 	// tallentaa kyssärin
-	@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveKysymys", method = RequestMethod.POST)
 	public String save(Kysymys kysymys, List<Kysymys> kysymykset, Model model) {
 		kysymykset.add(kysymys);
 		model.addAttribute("kysymykset", kysymykset);
-		return "redirect:addkysely";
+		return "redirect:addKysymys";
+	}
+	
+	// Lisää kysmäri
+	@RequestMapping(value = "/addKysymys")
+	public String addKysymys(Model model) {
+		model.addAttribute("kysymys", new Kysymys());
+		return "addKysymys";
 	}
 }
