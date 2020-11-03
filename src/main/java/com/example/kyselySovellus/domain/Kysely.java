@@ -1,4 +1,4 @@
-package superpähkinä.ohjelmistoprojekti.domain;
+package com.example.kyselySovellus.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

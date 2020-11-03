@@ -1,4 +1,4 @@
-package superpähkinä.ohjelmistoprojekti.domain;
+package com.example.kyselySovellus.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.example.kyselySovellus.domain.Kysely;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import superpähkinä.ohjelmistoprojekti.domain.Kysely;
 
 @Entity
 public class Kysymys {

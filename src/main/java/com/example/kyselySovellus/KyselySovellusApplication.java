@@ -12,10 +12,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
-import superpähkinä.ohjelmistoprojekti.domain.Kysely;
-import superpähkinä.ohjelmistoprojekti.domain.KyselyRepository;
-import superpähkinä.ohjelmistoprojekti.domain.Kysymys;
-import superpähkinä.ohjelmistoprojekti.domain.KysymysRepository;
+import com.example.kyselySovellus.domain.Kysely;
+import com.example.kyselySovellus.domain.KyselyRepository;
+import com.example.kyselySovellus.domain.Kysymys;
+import com.example.kyselySovellus.domain.KysymysRepository;
 
 @SpringBootApplication
 public class KyselySovellusApplication extends SpringBootServletInitializer {
@@ -41,7 +41,9 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			kysymysrepo.save(new Kysymys("teksti",true, "Mitä tv-sarjaa suosittelet?", new Kysely()));
 			kysymysrepo.save(new Kysymys("teksti",true, "Mitä musiikkia suosittelet?", new Kysely()));
 			*/
-			
+			/* luodaan ensin tyhjä kysely
+			 * luodaan kysymys kerrallaan, kysymyksellä on viittaus kyselyyn
+			 */
 			List<Kysymys> kysymykset=new ArrayList<>();
 			kysymykset.add(new Kysymys("teksti",true, "Mitä elokuvaa suosittelet?"));
 			kysymykset.add(new Kysymys("teksti",true, "Mitä tv-sarjaa suosittelet?"));

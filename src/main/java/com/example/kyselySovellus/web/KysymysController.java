@@ -1,4 +1,4 @@
-package superpähkinä.ohjelmistoprojekti.webcontroller;
+package com.example.kyselySovellus.web;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import superpähkinä.ohjelmistoprojekti.domain.Kysely;
-import superpähkinä.ohjelmistoprojekti.domain.KyselyRepository;
-import superpähkinä.ohjelmistoprojekti.domain.Kysymys;
-import superpähkinä.ohjelmistoprojekti.domain.KysymysRepository;
+import com.example.kyselySovellus.domain.Kysely;
+import com.example.kyselySovellus.domain.KyselyRepository;
+import com.example.kyselySovellus.domain.Kysymys;
+import com.example.kyselySovellus.domain.KysymysRepository;
 
 @Controller
 public class KysymysController {

@@ -1,11 +1,10 @@
-package superpähkinä.ohjelmistoprojekti.domain;
+package com.example.kyselySovellus.domain;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 public interface KyselyRepository extends CrudRepository<Kysely, Long>{
 
-	List<Kysely> findByName(String nimi);
+	List<Kysely> findByNimi(String nimi);
 }
