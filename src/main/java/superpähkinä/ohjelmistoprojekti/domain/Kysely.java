@@ -28,6 +28,17 @@ public class Kysely {
 	public Kysely() {
 
 	}
+	
+	
+
+	public Kysely(String nimi, String kuvaus, List<Kysymys> kysymykset) {
+		this.nimi = nimi;
+		this.kuvaus = kuvaus;
+		this.luontipvm = LocalDate.now();
+		this.kysymykset = kysymykset;
+	}
+
+
 
 	public Kysely(String nimi, String kuvaus) {
 

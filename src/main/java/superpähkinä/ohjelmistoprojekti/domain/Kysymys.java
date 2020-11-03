@@ -25,6 +25,14 @@ public class Kysymys {
     @JoinColumn(name = "kysely_id")
     private Kysely kysely;
 
+	public Kysymys(String tyyppi, Boolean vaadittu, String kysymys) {
+		super();
+		this.tyyppi = tyyppi;
+		this.vaadittu = vaadittu;
+		this.kysymys = kysymys;
+	
+	}
+	
 	public Kysymys(String tyyppi, Boolean vaadittu, String kysymys, Kysely kysely) {
 		super();
 		this.tyyppi = tyyppi;
