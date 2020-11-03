@@ -53,12 +53,6 @@ public class KyselyController {
 			kyselyRepository.save(kysely);
 			return "redirect:kyselylist";
 		}
-		//tallentaa kyssärin
-		@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
-		public String save(Kysymys kysymys, List<Kysymys> kysymykset, Model model) {
-			kysymykset.add(kysymys);
-			model.addAttribute("kysymykset", kysymykset);
-			return "redirect:addkysely";
-	}
+
 }
 
