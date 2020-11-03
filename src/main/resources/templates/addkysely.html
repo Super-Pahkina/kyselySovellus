@@ -9,8 +9,8 @@
 
 	<h1>Luo uusi kysymys</h1>
 	
-	<ul th:each= "kysymys:${kysymykset}">
-		<li th:text= "${ kysymys.teksti }"></li>
+	<ul th:each= "kysymys:${kysely.kysymykset}">
+		<li><p th:text= "${ kysymys.teksti }"/></li>
 	</ul>
 	
 	

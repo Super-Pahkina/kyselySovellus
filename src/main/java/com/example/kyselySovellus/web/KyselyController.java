@@ -40,7 +40,7 @@ public class KyselyController {
 		//Lisää kyselyn
 		@RequestMapping(value = "/addkysely")
 		public String addKysely(Model model) {
-			ArrayList<Kysymys> kysymykset = new ArrayList<Kysymys>();
+			List<Kysymys> kysymykset = new ArrayList<Kysymys>();
 			model.addAttribute("kysymykset", kysymykset);
 			model.addAttribute("kysely", new Kysely());
 			model.addAttribute("kysymys", new Kysymys());
@@ -49,7 +49,8 @@ public class KyselyController {
 
 		//tallentaa kyselyn
 		@RequestMapping(value = "/savekysely", method = RequestMethod.POST)
-		public String save(Kysymys kysymys, Kysely kysely, List<Kysymys> kysymykset) {
+		public String save(Kysymys kysymys, Kysely kysely, ArrayList<Kysymys> kysymykset) {
+			kysymysRepository.save(kysymys);
 			kysymykset.add(kysymys);
 			kysely.setKysymykset(kysymykset);
 			kyselyRepository.save(kysely);
