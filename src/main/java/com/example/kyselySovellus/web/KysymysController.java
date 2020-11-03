@@ -30,10 +30,11 @@ public class KysymysController {
 	
 	// tallentaa kyssärin
 	@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
-	public String save(Kysymys kysymys, List<Kysymys> kysymykset, Model model) {
+	public String save(Kysymys kysymys, Kysely kysely, List<Kysymys> kysymykset, Model model) {
 		kysymykset.add(kysymys);
+		model.addAttribute("kysely", kysely);
 		model.addAttribute("kysymykset", kysymykset);
-		return "redirect:addkysymys";
+		return "redirect:addkysely";
 	}
 	
 	// Lisää kysmäri

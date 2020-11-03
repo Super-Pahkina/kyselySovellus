@@ -14,14 +14,14 @@
 	</ul>
 	
 	
-	<form th:object="${kysymys}" th:action="@{saveKysymys}" action="#" method="post">
+	<form th:object="${kysymys}" th:action="@{savekysymys}" action="#" method="post">
 		<label for="kysymys">Kysymys: </label>
-		<input type="text" id="kysymys" th:field="*{kysymys}" /></br>
-		<input type="hidden" value={kysymykset} />
-		<input type="submit" value="Save"></input>
+		<input type="text" id="kysymys" th:field="*{kysymys.kysymys}" /></br>
+		<input type="hidden" value={kysely} />
+		<input type="submit" value="Save">Uusi kysymys</input>
 	</form>
 	
-	<a th:href="@{/saveKysely}>Tallenna kysely</a>
+	<a th:href="@{/savekysely}>Tallenna kysely</a>
 	
 </body>
 </html>
