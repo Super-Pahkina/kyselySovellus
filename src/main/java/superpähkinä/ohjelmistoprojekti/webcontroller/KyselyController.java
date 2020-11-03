@@ -54,5 +54,12 @@ public class KyselyController {
 			return "redirect:kyselylist";
 		}
 
+		//REST hakee kyselyn kysymykset
+		@RequestMapping(value="/api/kyselyt/{id}/kysymykset", method = RequestMethod.GET)
+		public @ResponseBody List<Kysymys> getKysymyksetRest(@PathVariable Long id) {
+			Optional<Kysely> haettava = kyselyRepository.findById(id);
+			List<Kysymys> kysymykset = haettava.get().getKysymykset();
+			return kysymykset;
+		}
 }
 
