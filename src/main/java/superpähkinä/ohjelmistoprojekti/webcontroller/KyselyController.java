@@ -31,7 +31,7 @@ public class KyselyController {
 		private KysymysRepository kysymysRepository;
 
 		//Listaa kyselyt
-		@RequestMapping("/kyselylist")
+		@RequestMapping("/")
 		public String kyselyList(Model model) {
 			model.addAttribute("kyselyt", kyselyRepository.findAll());
 			return "kyselylist";
