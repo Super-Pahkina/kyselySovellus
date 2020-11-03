@@ -22,15 +22,13 @@ public class Kysely {
 //	private LocalDate luontipvm;
 
 	@JsonBackReference
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysymys")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysely")
 	private List<Kysymys> kysymykset;
 
 	public Kysely() {
 
 	}
 	
-	
-
 	public Kysely(String nimi, String kuvaus, List<Kysymys> kysymykset) {
 		this.nimi = nimi;
 		this.kuvaus = kuvaus;

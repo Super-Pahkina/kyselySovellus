@@ -17,32 +17,32 @@ public class Kysymys {
 	private Long kysymys_id;
 	String tyyppi;
 	Boolean vaadittu;
-	String kysymys;
+	String teksti;
 	
 	@ManyToOne
     @JsonIgnoreProperties ("kysymys") 
     @JoinColumn(name = "kysely_id")
     private Kysely kysely;
 
-	public Kysymys(String tyyppi, Boolean vaadittu, String kysymys) {
+	public Kysymys(String tyyppi, Boolean vaadittu, String teksti) {
 		super();
 		this.tyyppi = tyyppi;
 		this.vaadittu = vaadittu;
-		this.kysymys = kysymys;
+		this.teksti = teksti;
 	
 	}
 	
-	public Kysymys(String tyyppi, Boolean vaadittu, String kysymys, Kysely kysely) {
+	public Kysymys(String tyyppi, Boolean vaadittu, String teksti, Kysely kysely) {
 		super();
 		this.tyyppi = tyyppi;
 		this.vaadittu = vaadittu;
-		this.kysymys = kysymys;
+		this.teksti = teksti;
 		this.kysely = kysely;
 	}
 
-	public Kysymys(String kysymys, Kysely kysely) {
+	public Kysymys(String teksti, Kysely kysely) {
 		super();
-		this.kysymys = kysymys;
+		this.teksti = teksti;
 		this.kysely = kysely;
 	}
 	
@@ -74,12 +74,12 @@ public class Kysymys {
 		this.vaadittu = vaadittu;
 	}
 
-	public String getKysymys() {
-		return kysymys;
+	public String getTeksti() {
+		return teksti;
 	}
 
-	public void setKysymys(String kysymys) {
-		this.kysymys = kysymys;
+	public void setTeksti(String teksti) {
+		this.teksti = teksti;
 	}
 
 	public Kysely getKysely() {
@@ -92,7 +92,7 @@ public class Kysymys {
 
 	@Override
 	public String toString() {
-		return "Kysymys [tyyppi=" + tyyppi + ", vaadittu=" + vaadittu + ", kysymys=" + kysymys + ", kysely=" + kysely + "]";
+		return "Kysymys [tyyppi=" + tyyppi + ", vaadittu=" + vaadittu + ", teksti=" + teksti + ", kysely=" + kysely + "]";
 	}
 	
 }

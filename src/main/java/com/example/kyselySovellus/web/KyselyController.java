@@ -40,9 +40,10 @@ public class KyselyController {
 		//Lisää kyselyn
 		@RequestMapping(value = "/addkysely")
 		public String addKysely(Model model) {
-			List<Kysymys> kysymykset = new ArrayList<Kysymys>();
+			ArrayList<Kysymys> kysymykset = new ArrayList<Kysymys>();
 			model.addAttribute("kysymykset", kysymykset);
 			model.addAttribute("kysely", new Kysely());
+			model.addAttribute("kysymys", new Kysymys());
 			return "addkysely";
 		}
 
