@@ -1,6 +1,5 @@
 package com.example.kyselySovellus;
 
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,36 +33,25 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 	public CommandLineRunner demo(KyselyRepository kyselyrepo, KysymysRepository kysymysrepo) {
 		return(args)-> {
 			
-			log.info("saving questions");
-			//String tyyppi, Boolean vaadittu, String kysymys, Ky
-			/*kysymysrepo.save(new Kysymys("teksti",true, "Mitä elokuvaa suosittelet?", new Kysely()));
-			kysymysrepo.save(new Kysymys("teksti",true, "Mitä tv-sarjaa suosittelet?", new Kysely()));
-			kysymysrepo.save(new Kysymys("teksti",true, "Mitä musiikkia suosittelet?", new Kysely()));
-			*/
-			/* luodaan ensin tyhjä kysely
-			 * luodaan kysymys kerrallaan, kysymyksellä on viittaus kyselyyn
-			
-			List<Kysymys> kysymykset=new ArrayList<>();
-			kysymykset.add(new Kysymys("teksti",true, "Mitä elokuvaa suosittelet?"));
-			kysymykset.add(new Kysymys("teksti",true, "Mitä tv-sarjaa suosittelet?"));
-			kysymykset.add(new Kysymys("teksti",true, "Mitä musiikkia suosittelet?"));
-		
-			log.info("saving kysely");
-			kyselyrepo.save(new Kysely("Kulttuurivinkkaus-kysely Syksy 2020", "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa.", kysymykset));
-			 */
 			log.info("luodaan kysely");
-			Kysely uusi = new Kysely("Kulttuurivinkkaus-kysely Syksy 2020", "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa.", null);
-			kyselyrepo.save(uusi);
+			Kysely ekakysely = new Kysely("Kulttuurivinkkaus-kysely Syksy 2020", "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa.", null);
+			kyselyrepo.save(ekakysely);
+			
+			log.info("luodaan toinen kysely");
+			Kysely tokakysely = new Kysely("Koirakysely", "Tällä kyselyllä kysellään koirista", null);
+			kyselyrepo.save(tokakysely);
 			
 			log.info("luodaan pari kysymystä");
-			Kysymys eka = new Kysymys("teksti",true, "Mitä elokuvaa suosittelet?", uusi);
-			Kysymys toka = new Kysymys("teksti",true, "Mitä tv-sarjaa suosittelet?", uusi);
-			Kysymys kolmas = new Kysymys("teksti",true, "Mitä musiikkia suosittelet?", uusi);
+			Kysymys eka = new Kysymys("teksti",true, "Mitä elokuvaa suosittelet?", ekakysely);
+			Kysymys toka = new Kysymys("teksti",true, "Mitä tv-sarjaa suosittelet?", ekakysely);
+			Kysymys kolmas = new Kysymys("teksti",true, "Mitä musiikkia suosittelet?", ekakysely);
+			Kysymys neljas = new Kysymys("teksti",true, "Mitä koiranpentua suosittelet?", tokakysely);
 			
 			log.info("tallennetaan kysymykset repoon");
 			kysymysrepo.save(eka);
 			kysymysrepo.save(toka);
 			kysymysrepo.save(kolmas);
+			kysymysrepo.save(neljas);
 			
 		};
 		

@@ -78,12 +78,18 @@ public class KyselyController {
 			return (List<Kysymys>) kysymysRepository.findAll();
 		}
 		
-		//REST tietyn kyselyn kysymykset KESKEN!!!
-		//@RequestMapping(value ="/kysymykset/{kyselyid}")
-		//public @ResponseBody List<Kysymys> getKyselynKysymykset(@PathVariable kyselyid){
-			
-			
-		//}
+		//REST tietyn kyselyn kysymykset
+		@RequestMapping(value ="/kysymykset/{kyselyid}")
+		public @ResponseBody List<Kysymys> getKyselynKysymykset(@PathVariable Long kyselyid){
+			Iterable<Kysymys> all = kysymysRepository.findAll();
+			List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
+			for(Kysymys kysymys : all) {
+				if(kysymys.getKysely().getKysely_id() == kyselyid) {
+					kyselynKysymykset.add(kysymys);
+				}
+			}
+			return kyselynKysymykset;
+		}
 		
 		
 	
