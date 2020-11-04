@@ -38,23 +38,20 @@ public class KyselyController {
 		}
 	
 		//Lisää kyselyn
-		@RequestMapping(value = "/addkysely")
+		@RequestMapping(value = "/add")
 		public String addKysely(Model model) {
-			List<Kysymys> kysymykset = new ArrayList<Kysymys>();
-			model.addAttribute("kysymykset", kysymykset);
 			model.addAttribute("kysely", new Kysely());
-			model.addAttribute("kysymys", new Kysymys());
-			return "addkysely";
+			return "luokysely";
 		}
 
 		//tallentaa kyselyn
 		@RequestMapping(value = "/savekysely", method = RequestMethod.POST)
-		public String save(Kysymys kysymys, Kysely kysely, ArrayList<Kysymys> kysymykset) {
-			kysymysRepository.save(kysymys);
-			kysymykset.add(kysymys);
-			kysely.setKysymykset(kysymykset);
+		public String save(Model model, Kysely kysely) {
 			kyselyRepository.save(kysely);
-			return "redirect:kyselylist";
+			Kysymys kysymys = new Kysymys("testi", kysely);
+			model.addAttribute(kysely);
+			model.addAttribute("kysymys", new Kysymys());
+			return "redirect:/";
 		}
 
 		//REST hakee kaikki kyselyt
@@ -67,6 +64,12 @@ public class KyselyController {
 		@RequestMapping(value="/kyselyt/{id}")
 		public @ResponseBody Optional<Kysely> findKysely(@PathVariable Long id){
 			return kyselyRepository.findById(id);
+		}
+		
+		@RequestMapping(value = "/edit/{id}")
+		public String editKysely(@PathVariable("id") Long kysely_id, Model model) {
+			model.addAttribute("kysely", kyselyRepository.findById(kysely_id));
+			return "addkysely";
 		}
 		
 		//REST hakee kaikki kysymykset

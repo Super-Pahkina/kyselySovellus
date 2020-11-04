@@ -16,7 +16,7 @@ import java.util.List;
 public class Kysely {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long kysely_id;
+	private Long kysely_id;
 	private String nimi;
 	private String kuvaus;
 //	private LocalDate luontipvm;
@@ -45,11 +45,11 @@ public class Kysely {
 	//	this.luontipvm = LocalDate.now();
 	}
 
-	public long getKysely_id() {
+	public Long getKysely_id() {
 		return kysely_id;
 	}
 
-	public void setKysely_id(long kysely_id) {
+	public void setKysely_id(Long kysely_id) {
 		this.kysely_id = kysely_id;
 	}
 

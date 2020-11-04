@@ -8,11 +8,15 @@
 <body>
 
 	<h1>Luo uusi kysely</h1>
-	<ul th:each= "kysely:${kyselyt}">
-		<li th:text= "${ kysely.nimi }"></li>
+	<table>
+		<tr th:each= "kysely:${kyselyt}">
+			<td th:text= "${ kysely.nimi }"></td>
+			<td><a th:href="@{/edit/{id}(id=${kysely.kysely_id})}">Edit</a></td>
+		</tr>
+	</table>
 	</ul>
 	
-	<a th:href="@{/addkysely}">Lisää uusi kysely</a>
+	<a th:href="@{/add}">Lisää uusi kysely</a>
 	
 </body>
 </html>

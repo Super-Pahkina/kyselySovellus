@@ -30,9 +30,9 @@ public class KysymysController {
 	// tallentaa kyssärin
 	@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
 	public String save(ArrayList<Kysymys> kysymykset, Kysymys kysymys, Kysely kysely, Model model) {
-		kyselyRepository.save(kysely);
 		Kysymys kysymys2 = new Kysymys(kysymys.getTeksti(), kysely);
 		kysymysRepository.save(kysymys2);
+		System.out.println(kysymykset.size());
 		model.addAttribute("kysely", kysely);
 		model.addAttribute("kysymykset", kysymykset);
 		return "redirect:addkysely";

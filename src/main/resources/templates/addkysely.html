@@ -9,16 +9,16 @@
 
 	<h1>Luo uusi kysymys</h1>
 	
-	<ul th:each= "kysymys:${kysely.kysymykset}">
-		<li><p th:text= "${ kysymys.teksti }"/></li>
+	<ul th:each= "kysymys:${kysely}">
+		<li><p th:text= "${ kysely.kysymys.teksti }"/></li>
 	</ul>
 	
 	
 	<form th:object="${kysymys}" th:action="@{savekysymys}" action="#" method="post">
 		<label for="teksti">Kysymys: </label>
 		<input type="text" id="teksti" th:field="*{teksti}" /></br>
-		<input type="hidden" value={kysely} />
-		<input type="hidden" value={kysymykset} />
+		<input type="hidden" th:field="*{kysely}" />
+		<input type="hidden" th:field="${kysymykset}" />
 		<input type="submit" value="Uusi kysymys"></input>
 	</form>
 	
