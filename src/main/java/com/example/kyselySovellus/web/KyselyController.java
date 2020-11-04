@@ -49,6 +49,7 @@ public class KyselyController {
 		public String save(Model model, Kysely kysely) {
 			kyselyRepository.save(kysely);
 			Kysymys kysymys = new Kysymys("testi", kysely);
+			kysymysRepository.save(kysymys);
 			model.addAttribute(kysely);
 			model.addAttribute("kysymys", new Kysymys());
 			return "redirect:/";
@@ -68,7 +69,17 @@ public class KyselyController {
 		
 		@RequestMapping(value = "/edit/{id}")
 		public String editKysely(@PathVariable("id") Long kysely_id, Model model) {
-			model.addAttribute("kysely", kyselyRepository.findById(kysely_id));
+			Iterable<Kysymys> all = kysymysRepository.findAll();
+			List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
+			for(Kysymys kysymys : all) {
+				if(kysymys.getKysely().getKysely_id() == kysely_id) {
+					kyselynKysymykset.add(kysymys);
+				}
+			}
+			Optional<Kysely> kyselyopt = kyselyRepository.findById(kysely_id);
+			Kysely kysely = kyselyopt.get();
+			Kysymys kysymys = new Kysymys ("", kysely);
+			model.addAttribute("kysymys", kysymys);
 			return "addkysely";
 		}
 		
