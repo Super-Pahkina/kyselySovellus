@@ -7,13 +7,13 @@
 
 <body>
 
-	<h1>Luo uusi kysymys</h1>
-	
+	<h1><p th:text="${kysymys.kysely.nimi}"/> </h1>
+	<p>Kysymykset:</p>
 	<ul th:each= "kysymys:${kysymykset}">
 		<li><p th:text= "${ kysymys.teksti }"/></li>
 	</ul>
 	  
-	
+	<h1>Luo uusi kysymys</h1>
 	<form th:object="${kysymys}" th:action="@{../savekysymys}" action="#" method="post">
 		<label for="teksti">Kysymys: </label>
 		<input type="text" id="teksti" th:field="*{teksti}" /></br>
