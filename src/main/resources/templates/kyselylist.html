@@ -11,6 +11,7 @@
 	<table>
 		<tr th:each= "kysely:${kyselyt}">
 			<td th:text= "${ kysely.nimi }"></td>
+			<td><a th:href="@{/kysymykset/{id}(id=${kysely.kysely_id})}">Näytä</a></td>
 			<td><a th:href="@{/edit/{id}(id=${kysely.kysely_id})}">Edit</a></td>
 		</tr>
 	</table>

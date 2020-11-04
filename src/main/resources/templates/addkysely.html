@@ -12,15 +12,20 @@
 	<ul th:each= "kysymys:${kysymykset}">
 		<li><p th:text= "${ kysymys.teksti }"/></li>
 	</ul>
+	  
 	
-	
-	<form th:object="${kysymys}" th:action="@{savekysymys}" action="#" method="post">
+	<form th:object="${kysymys}" th:action="@{../savekysymys}" action="#" method="post">
 		<label for="teksti">Kysymys: </label>
 		<input type="text" id="teksti" th:field="*{teksti}" /></br>
-		<input type="hidden" th:field="*{kysely}" />
-		<input type="submit" value="Uusi kysymys"></input>
+		<input type="hidden" th:field="*{kysely}" class="form-control" />
+		<input type="hidden" th:field="*{kysymys_id}" class="form-control" />
+		<input type="submit" value="Tallenna"></input>
 	</form>
-	
+	</br>
+	<form method="get" action="/">
+    	<button type="submit">Valmis</button>
+	</form>
+
 
 	
 </body>

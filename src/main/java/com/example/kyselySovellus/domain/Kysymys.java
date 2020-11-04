@@ -90,9 +90,9 @@ public class Kysymys {
 		this.kysely = kysely;
 	}
 
-	@Override
-	public String toString() {
-		return "Kysymys [tyyppi=" + tyyppi + ", vaadittu=" + vaadittu + ", teksti=" + teksti + ", kysely=" + kysely + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Kysymys [tyyppi=" + tyyppi + ", vaadittu=" + vaadittu + ", teksti=" + teksti + ", kysely=" + kysely + "]";
+//§	}
 	
 }

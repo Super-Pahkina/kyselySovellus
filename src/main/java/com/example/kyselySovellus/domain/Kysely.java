@@ -85,14 +85,14 @@ public class Kysely {
 		this.kuvaus = kuvaus;
 	}
 
-	@Override
-	public String toString() {
-		return "Kysely [kysely_id=" + kysely_id + 
-				", nimi=" + nimi + 
-				", kuvaus=" + kuvaus + 
+//	@Override
+//	public String toString() {
+//		return "Kysely [kysely_id=" + kysely_id + 
+//				", nimi=" + nimi + 
+//				", kuvaus=" + kuvaus + 
 	//			", luontipvm=" + luontipvm + 
-				", kysymykset=" + kysymykset + "]";
-	}
+//				", kysymykset=" + kysymykset + "]";
+//	}
 
 
 

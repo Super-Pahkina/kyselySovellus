@@ -70,17 +70,19 @@ public class KyselyController {
 		
 		@RequestMapping(value = "/edit/{id}")
 		public String editKysely(@PathVariable("id") Long kysely_id, Model model) {
-			ArrayList<Kysymys> kysymykset = new ArrayList<>();
-			kysymysRepository.findAll().forEach(kysymykset::add);
+			Iterable<Kysymys> all = kysymysRepository.findAll();
 			List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
-			int i = 0;
-			while (i < kysymykset.size()) {
-				kyselynKysymykset.add(kysymykset.get(i));
-				i++;
+			for(Kysymys kysymys : all) {
+				if(kysymys.getKysely().getKysely_id() == kysely_id) {
+					kyselynKysymykset.add(kysymys);
+				}
 			}
 			Optional<Kysely> kyselyopt = kyselyRepository.findById(kysely_id);
 			Kysely kysely = kyselyopt.get();
 			Kysymys kysymys = new Kysymys ("", kysely);
+			System.out.println(kysymys.getKysymys_id());
+			System.out.println(kysymys.getTeksti());
+			System.out.println(kysymys.getKysely());
 			model.addAttribute("kysymys", kysymys);
 			model.addAttribute("kysymykset", kyselynKysymykset);
 			return "addkysely";
