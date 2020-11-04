@@ -3,6 +3,7 @@ package com.example.kyselySovellus.web;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
@@ -69,17 +70,19 @@ public class KyselyController {
 		
 		@RequestMapping(value = "/edit/{id}")
 		public String editKysely(@PathVariable("id") Long kysely_id, Model model) {
-			Iterable<Kysymys> all = kysymysRepository.findAll();
+			ArrayList<Kysymys> kysymykset = new ArrayList<>();
+			kysymysRepository.findAll().forEach(kysymykset::add);
 			List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
-			for(Kysymys kysymys : all) {
-				if(kysymys.getKysely().getKysely_id() == kysely_id) {
-					kyselynKysymykset.add(kysymys);
-				}
+			int i = 0;
+			while (i < kysymykset.size()) {
+				kyselynKysymykset.add(kysymykset.get(i));
+				i++;
 			}
 			Optional<Kysely> kyselyopt = kyselyRepository.findById(kysely_id);
 			Kysely kysely = kyselyopt.get();
 			Kysymys kysymys = new Kysymys ("", kysely);
 			model.addAttribute("kysymys", kysymys);
+			model.addAttribute("kysymykset", kyselynKysymykset);
 			return "addkysely";
 		}
 		
