@@ -13,6 +13,7 @@
 			<td th:text= "${ kysely.nimi }"></td>
 			<td><a th:href="@{/kysymykset/{id}(id=${kysely.kysely_id})}">Näytä</a></td>
 			<td><a th:href="@{/edit/{id}(id=${kysely.kysely_id})}">Edit</a></td>
+			<td><a th:href="@{/delete/{id}(id=${kysely.kysely_id})}">Delete</a></td>
 		</tr>
 	</table>
 	</ul>
