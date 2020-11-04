@@ -49,8 +49,6 @@ public class KyselyController {
 		@RequestMapping(value = "/savekysely", method = RequestMethod.POST)
 		public String save(Model model, Kysely kysely) {
 			kyselyRepository.save(kysely);
-			Kysymys kysymys = new Kysymys("testi", kysely);
-			kysymysRepository.save(kysymys);
 			model.addAttribute(kysely);
 			model.addAttribute("kysymys", new Kysymys());
 			return "redirect:/";

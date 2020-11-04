@@ -32,28 +32,21 @@ public class KysymysController {
 	// tallentaa kyssärin
 	@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
 	public String save(Kysymys kysymys, Model model) {
-		System.out.println(kysymys.getKysymys_id());
-		System.out.println(kysymys.getTeksti());
-		System.out.println(kysymys.getKysely());
-		kysymysRepository.save(kysymys);
-		System.out.println("2");
+		if (!kysymys.getTeksti().equals("")) {
+			kysymysRepository.save(kysymys);
+		}
 		Iterable<Kysymys> all = kysymysRepository.findAll();
 		List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
-		System.out.println("7");
 		for(Kysymys kysymys2 : all) {
-			System.out.println("3");
 			if(kysymys2.getKysely().getKysely_id() == kysymys.getKysely().getKysely_id()) {
 				kyselynKysymykset.add(kysymys2);
 			}
 		}
 		Optional<Kysely> kyselyopt = kyselyRepository.findById(kysymys.getKysely().getKysely_id());
-		System.out.println("4");
 		Kysely kysely = kyselyopt.get();
 		Kysymys kysymys3 = new Kysymys ("", kysely);
-		kysymysRepository.save(kysymys3);
 		model.addAttribute("kysymys", kysymys3);
 		model.addAttribute("kysymykset", kyselynKysymykset);
-		System.out.println("5");
 		return "addkysely";
 	}
 	
