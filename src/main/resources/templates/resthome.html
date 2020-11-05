@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>REST home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+
+<body>
+
+<h1>REST Home Page</h1>
+
+<h2>Kaikki Kyselyt</h2>
+<h3>Method: GET Endpoint: <a href="/kyselyt">/kyselyt</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+[
+	{
+		kysely_id: 1,
+		nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+		kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+	},
+	{
+		kysely_id: 2,
+		nimi: "Koirakysely",
+		kuvaus: "Tällä kyselyllä kysellään koirista"
+	}
+]
+	</pre>
+</div>
+
+<h2>Kysely id:n perusteella</h2>
+<h3>GET /kyselyt/{kysely_id} <a href="/kyselyt/1">/kyselyt/1</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+		{
+			kysely_id: 1,
+			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+		}
+	</pre>
+</div>
+
+<h2>Hae kaikki kysymykset</h2>
+<h3>GET /kysymykset <a href="/kysymykset">/kysymykset</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+	
+[
+	{
+		kysymys_id: 3,
+		tyyppi: "teksti",
+		vaadittu: true,
+		teksti: "Mitä elokuvaa suosittelet?",
+		kysely: {
+			kysely_id: 1,
+			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+		}
+	},
+	{
+		kysymys_id: 4,
+		tyyppi: "teksti",
+		vaadittu: true,
+		teksti: "Mitä tv-sarjaa suosittelet?",
+		kysely: {
+			kysely_id: 1,
+			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+		}
+	},
+	{
+		kysymys_id: 5,
+		tyyppi: "teksti",
+		vaadittu: true,
+		teksti: "Mitä musiikkia suosittelet?",
+		kysely: {
+			kysely_id: 1,
+			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+		}
+	}
+]
+
+	</pre>
+</div>
+
+<h2>Tietyn kyselyn kysymykset</h2>
+<h3>GET /kyselyt/{kysely_id}/kysymykset <a href="/kyselyt/1/kysymykset">/kyselyt/1/kysymykset</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+	
+	[
+		{
+			kysymys_id: 3,
+			tyyppi: "teksti",
+			vaadittu: true,
+			teksti: "Mitä elokuvaa suosittelet?",
+			kysely: {
+				kysely_id: 1,
+				nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+				kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+			}
+		},
+		{
+			kysymys_id: 4,
+			tyyppi: "teksti",
+			vaadittu: true,
+			teksti: "Mitä tv-sarjaa suosittelet?",
+			kysely: {
+				kysely_id: 1,
+				nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+				kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+			}
+		},
+		{
+			kysymys_id: 5,
+			tyyppi: "teksti",
+			vaadittu: true,
+			teksti: "Mitä musiikkia suosittelet?",
+			kysely: {
+				kysely_id: 1,
+				nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
+				kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+			}
+		}
+]
+
+	</pre>
+</div>
+
+</body>
+</html>
