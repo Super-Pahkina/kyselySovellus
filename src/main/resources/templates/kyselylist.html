@@ -12,13 +12,13 @@
 		<tr th:each= "kysely:${kyselyt}">
 			<td th:text= "${ kysely.nimi }"></td>
 			<td><a th:href="@{/edit/{id}(id=${kysely.kysely_id})}">Syötä kysymyksiä</a></td>
-			<td><a th:href="@{/kysymykset/{id}(id=${kysely.kysely_id})}">Näytä</a></td>
-			<td><a th:href="@{/delete/{id}(id=${kysely.kysely_id})}">Delete</a></td>
+<!--  			<td><a th:href="@{/kysymykset/{id}(id=${kysely.kysely_id})}">Näytä</a></td>
+-->			<td><a th:href="@{/delete/{id}(id=${kysely.kysely_id})}">Delete</a></td>
 		</tr>
 	</table>
-	</ul>
-	
-	<a th:href="@{/add}">Lisää uusi kysely</a>
+
+	<a th:href="@{/add}">Lisää uusi kysely</a><br />
+	<a th:href="@{/resthome}">REST API</a>
 	
 </body>
 </html>
