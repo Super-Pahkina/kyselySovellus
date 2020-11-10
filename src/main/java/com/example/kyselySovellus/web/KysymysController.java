@@ -20,6 +20,7 @@ import com.example.kyselySovellus.domain.KyselyRepository;
 import com.example.kyselySovellus.domain.Kysymys;
 import com.example.kyselySovellus.domain.KysymysRepository;
 
+@CrossOrigin
 @Controller
 public class KysymysController {
 
