@@ -16,6 +16,8 @@ import com.example.kyselySovellus.domain.Kysely;
 import com.example.kyselySovellus.domain.KyselyRepository;
 import com.example.kyselySovellus.domain.Kysymys;
 import com.example.kyselySovellus.domain.KysymysRepository;
+import com.example.kyselySovellus.domain.Vastaus;
+import com.example.kyselySovellus.domain.VastausRepository;
 
 @CrossOrigin
 @Controller
@@ -26,6 +28,9 @@ public class RESTController {
 
 	@Autowired
 	private KysymysRepository kysymysRepository;
+	
+	@Autowired
+	private VastausRepository vastausRepository;
 	
 	@RequestMapping("/resthome")
 	public String resthome(Model model) {
@@ -51,6 +56,19 @@ public class RESTController {
 	public @ResponseBody List<Kysymys> getAllKysymykset() {
 		return (List<Kysymys>) kysymysRepository.findAll();
 	}
+	
+	// REST hakee kaikki vastaukset tiettyyn kyselyyn
+		@RequestMapping(value = "/kysely/{id}/vastaukset")
+		public @ResponseBody List<Vastaus> getAllVastaukset(@PathVariable Long kyselyid) {
+			Iterable<Vastaus> all = vastausRepository.findAll();
+			List<Vastaus> kyselynVastaukset = new ArrayList<>();
+			for (Vastaus vastaus : all) {
+				if (vastaus.getKysymys().getKysely().getKysely_id() == kyselyid) {
+					kyselynVastaukset.add(vastaus);
+				}
+			}
+			return kyselynVastaukset;
+		}
 
 	// REST tietyn kyselyn kysymykset
 	@RequestMapping(value = "kyselyt/{kyselyid}/kysymykset")
