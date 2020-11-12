@@ -37,9 +37,6 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Kysely ekakysely = new Kysely("Kurssipalautekysely", "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X.", null);
 			kyselyrepo.save(ekakysely);
 			
-			log.info("luodaan toinen kysely");
-			Kysely tokakysely = new Kysely("Koirakysely", "Tällä kyselyllä kysellään koirista", null);
-			kyselyrepo.save(tokakysely);
 			
 			log.info("luodaan pari kysymystä");
 			Kysymys eka = new Kysymys("teksti",true, "Mikä kurssissa oli mielestäsi hyvää?", ekakysely);
@@ -47,7 +44,6 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Kysymys kolmas = new Kysymys("teksti",true, "Osallistuitko aktiivisesti?", ekakysely);
 			Kysymys nelkku = new Kysymys("teksti",true, "Minkä arvosanan 1-5 antaisit kurssille, miksi?", ekakysely);
 			Kysymys viides = new Kysymys("teksti",true, "Minkä arvosanan 1-5 antaisit itsellesi?, miksi?", ekakysely);
-			Kysymys neljas = new Kysymys("teksti",true, "Mitä koiranpentua suosittelet?", tokakysely);
 			
 			log.info("tallennetaan kysymykset repoon");
 			kysymysrepo.save(eka);
@@ -55,7 +51,6 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			kysymysrepo.save(kolmas);
 			kysymysrepo.save(nelkku);
 			kysymysrepo.save(viides);
-			kysymysrepo.save(neljas);
 			
 		};
 		
