@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Vastaus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long kysely_id;
+	private Long vastaus_id;
 	private String syote;
 //	private LocalDate luontipvm;
 	
@@ -32,12 +32,12 @@ public class Vastaus {
 		
 	}
 
-	public Long getKysely_id() {
-		return kysely_id;
+	public Long getVastaus_id() {
+		return vastaus_id;
 	}
 
-	public void setKysely_id(Long kysely_id) {
-		this.kysely_id = kysely_id;
+	public void setVastaus_id(Long vastaus_id) {
+		this.vastaus_id = vastaus_id;
 	}
 
 	public String getSyote() {
