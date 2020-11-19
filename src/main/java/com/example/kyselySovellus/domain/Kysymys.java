@@ -1,5 +1,8 @@
 package com.example.kyselySovellus.domain;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,16 +18,19 @@ public class Kysymys {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long kysymys_id;
+	String teksti;
 	String tyyppi;
 	Boolean vaadittu;
-	String teksti;
+	@ElementCollection(targetClass=String.class)
+	List<String> monivalinta;
+	
 	
 	@ManyToOne
     @JsonIgnoreProperties ("kysymys") 
     @JoinColumn(name = "kysely_id")
     private Kysely kysely;
 
-	public Kysymys(String tyyppi, Boolean vaadittu, String teksti) {
+	public Kysymys(String teksti, String tyyppi, Boolean vaadittu) {
 		super();
 		this.tyyppi = tyyppi;
 		this.vaadittu = vaadittu;
@@ -32,11 +38,20 @@ public class Kysymys {
 	
 	}
 	
-	public Kysymys(String tyyppi, Boolean vaadittu, String teksti, Kysely kysely) {
+	public Kysymys(String teksti, String tyyppi, Boolean vaadittu, Kysely kysely) {
 		super();
 		this.tyyppi = tyyppi;
 		this.vaadittu = vaadittu;
 		this.teksti = teksti;
+		this.kysely = kysely;
+	}
+	
+	public Kysymys(String teksti, String tyyppi, Boolean vaadittu, List<String> lista, Kysely kysely) {
+		super();
+		this.tyyppi = tyyppi;
+		this.vaadittu = vaadittu;
+		this.teksti = teksti;
+		this.monivalinta = lista;
 		this.kysely = kysely;
 	}
 
@@ -48,6 +63,14 @@ public class Kysymys {
 	
 	public Kysymys() {
 		
+	}
+
+	public List<String> getMonivalinta() {
+		return monivalinta;
+	}
+
+	public void setMonivalinta(List<String> monivalinta) {
+		this.monivalinta = monivalinta;
 	}
 
 	public Long getKysymys_id() {

@@ -39,11 +39,11 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			
 			
 			log.info("luodaan pari kysymystä");
-			Kysymys eka = new Kysymys("teksti",true, "Mikä kurssissa oli mielestäsi hyvää?", ekakysely);
-			Kysymys toka = new Kysymys("teksti",true, "Mitä voisi tehdä paremmin?", ekakysely);
-			Kysymys kolmas = new Kysymys("teksti",true, "Osallistuitko aktiivisesti?", ekakysely);
-			Kysymys nelkku = new Kysymys("teksti",true, "Minkä arvosanan 1-5 antaisit kurssille, miksi?", ekakysely);
-			Kysymys viides = new Kysymys("teksti",true, "Minkä arvosanan 1-5 antaisit itsellesi, miksi?", ekakysely);
+			Kysymys eka = new Kysymys("Mikä kurssissa oli mielestäsi hyvää?", "teksti",true, ekakysely);
+			Kysymys toka = new Kysymys("Mitä voisi tehdä paremmin?", "teksti",true, ekakysely);
+			Kysymys kolmas = new Kysymys("Osallistuitko aktiivisesti?", "teksti",true,  ekakysely);
+			Kysymys nelkku = new Kysymys("Minkä arvosanan 1-5 antaisit kurssille, miksi?", "teksti",true, ekakysely);
+			Kysymys viides = new Kysymys("Minkä arvosanan 1-5 antaisit itsellesi, miksi?", "teksti",true, ekakysely);
 			
 			log.info("tallennetaan kysymykset repoon");
 			kysymysrepo.save(eka);

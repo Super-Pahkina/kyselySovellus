@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.kyselySovellus.domain.Kysely;
@@ -31,6 +32,32 @@ public class KysymysController {
 	private KysymysRepository kysymysRepository;
 	
 	// tallentaa kyssärin
+	@RequestMapping(value = "/tyyppi", method = RequestMethod.POST)
+	public String tyyppi(@RequestParam String tyyppi, Model model, Kysymys kysymys) {
+		System.out.println(kysymys.getKysely().getNimi());
+		System.out.println("1");
+		System.out.println(tyyppi);
+		if (tyyppi.equals("teksti")) {
+			System.out.println("2");
+			kysymys.setTyyppi(tyyppi);
+			kysymysRepository.save(kysymys);
+			model.addAttribute("kysymys", kysymys);
+			return "tekstikysymys";
+		}else if (tyyppi.equals("radiobutton")) {
+			kysymys.setTyyppi(tyyppi);
+			kysymysRepository.save(kysymys);
+			model.addAttribute("kysymys", kysymys);
+			return "radionappula";
+		}else if (tyyppi.equals("checkbox")){
+			kysymys.setTyyppi(tyyppi);
+			kysymysRepository.save(kysymys);
+			model.addAttribute("kysymys", kysymys);
+			return "checkbox";
+		}
+		System.out.println("3");
+		return "addkysymys";
+	}
+	
 	@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
 	public String save(Kysymys kysymys, Model model) {
 		if (!kysymys.getTeksti().equals("")) {
@@ -48,7 +75,7 @@ public class KysymysController {
 		Kysymys kysymys3 = new Kysymys ("", kysely);
 		model.addAttribute("kysymys", kysymys3);
 		model.addAttribute("kysymykset", kyselynKysymykset);
-		return "addkysely";
+		return "addkysymys";
 	}
 	
 	// Lisää kysmäri

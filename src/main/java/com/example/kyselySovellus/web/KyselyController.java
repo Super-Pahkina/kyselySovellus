@@ -68,9 +68,11 @@ public class KyselyController {
 		System.out.println(kysymys.getKysymys_id());
 		System.out.println(kysymys.getTeksti());
 		System.out.println(kysymys.getKysely());
+		String tyyppi = "";
+		model.addAttribute("tyyppi", tyyppi);
 		model.addAttribute("kysymys", kysymys);
 		model.addAttribute("kysymykset", kyselynKysymykset);
-		return "addkysely";
+		return "addkysymys";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

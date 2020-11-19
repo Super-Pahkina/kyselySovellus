@@ -1,5 +1,8 @@
 package com.example.kyselySovellus.domain;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +18,8 @@ public class Vastaus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long vastaus_id;
 	private String syote;
+	@ElementCollection(targetClass=String.class)
+	private List<String> checkbox;
 //	private LocalDate luontipvm;
 	
 	@ManyToOne
@@ -27,9 +32,23 @@ public class Vastaus {
 		this.syote = syote;
 		this.kysymys = kysymys;
 	}
+	
+	public Vastaus(List<String> checkbox, Kysymys kysymys) {
+		super();
+		this.checkbox = checkbox;
+		this.kysymys = kysymys;
+	}
 
 	public Vastaus() {
 		
+	}
+
+	public List<String> getCheckbox() {
+		return checkbox;
+	}
+
+	public void setCheckbox(List<String> checkbox) {
+		this.checkbox = checkbox;
 	}
 
 	public Long getVastaus_id() {

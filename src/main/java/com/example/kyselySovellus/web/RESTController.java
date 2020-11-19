@@ -87,7 +87,6 @@ public class RESTController {
 	// REST tallentaa tietyn kyselyn vastaukset
 	@RequestMapping(value = "/vastaukset", method = RequestMethod.POST)
 	public @ResponseBody Iterable<Vastaus> saveKyselynVastaukset(@RequestBody Iterable<Vastaus> lista) {
-		
 		return vastausRepository.saveAll(lista);
 	}
 }
