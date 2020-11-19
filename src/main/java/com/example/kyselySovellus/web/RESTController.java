@@ -96,4 +96,9 @@ public class RESTController {
 		
 		return vastausRepository.saveAll(lista);
 	}
+	
+	@RequestMapping(value = "/vastaukset", method = RequestMethod.GET)
+	public @ResponseBody List<Vastaus>getVastaukset() {
+		return (List<Vastaus>) vastausRepository.findAll();
+	}
 }
