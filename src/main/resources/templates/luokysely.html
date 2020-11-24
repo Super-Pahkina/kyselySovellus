@@ -9,6 +9,8 @@
 	<form th:object="${kysely}" th:action="@{savekysely}" action="#" method="post">
 		<label for="nimi">Kyselyn nimi: </label>
 		<input type="text" id="nimi" th:field="*{nimi}" /></br>
+		<label for="kuvaus">Kyselyn kuvaus: </label>
+		<input type="text" id="kuvaus" th:field="*{kuvaus}" /></br>
 		<input type="submit" value="Valmis"></input>
 	</form>
 </body>

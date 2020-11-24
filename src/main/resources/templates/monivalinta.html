@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tekstikysymys</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<h1 th:text="${kysymys.teksti}"></h1>
+	<p>Vastausvaihtoehto:</p>
+	<ul th:each= "vaihtoehto:${kysymys.monivalinta}">
+		<li><p th:text= "${ vaihtoehto }"/></li>
+	</ul>
+	
+	<form th:object="${kysymys}" th:action="@{../monivalinta}" action="#" method="post">
+		<label for="vaihtoehto">Vaihtoehto: </label>
+		<input type="text" id="vaihtoehto" name="vaihtoehto" /></br>
+		<input type="hidden" th:field="*{monivalinta}" class="form-control" />
+		<input type="hidden" th:field="*{teksti}" class="form-control" />
+		<input type="hidden" th:field="*{tyyppi}" class="form-control" />
+		<input type="hidden" th:field="*{kysely}" class="form-control" />
+		<input type="hidden" th:field="*{kysymys_id}" class="form-control" />
+		<input type="submit" value="Tallenna vaihtoehto"></input>
+		<button type="submit" name="valmis" value="valmis">Valmis</button>
+	</form>
+</body>
+</html>

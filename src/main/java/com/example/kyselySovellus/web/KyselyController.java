@@ -65,10 +65,8 @@ public class KyselyController {
 		Optional<Kysely> kyselyopt = kyselyRepository.findById(kysely_id);
 		Kysely kysely = kyselyopt.get();
 		Kysymys kysymys = new Kysymys("", kysely);
-		System.out.println(kysymys.getKysymys_id());
-		System.out.println(kysymys.getTeksti());
-		System.out.println(kysymys.getKysely());
 		String tyyppi = "";
+		model.addAttribute("kysely", kysely);
 		model.addAttribute("tyyppi", tyyppi);
 		model.addAttribute("kysymys", kysymys);
 		model.addAttribute("kysymykset", kyselynKysymykset);

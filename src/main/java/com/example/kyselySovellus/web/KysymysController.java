@@ -32,30 +32,56 @@ public class KysymysController {
 	private KysymysRepository kysymysRepository;
 	
 	// tallentaa kyssärin
-	@RequestMapping(value = "/tyyppi", method = RequestMethod.POST)
-	public String tyyppi(@RequestParam String tyyppi, Model model, Kysymys kysymys) {
-		System.out.println(kysymys.getKysely().getNimi());
-		System.out.println("1");
-		System.out.println(tyyppi);
-		if (tyyppi.equals("teksti")) {
-			System.out.println("2");
-			kysymys.setTyyppi(tyyppi);
+	@RequestMapping(value = "/ohjaa", method = RequestMethod.POST)
+	public String tyyppi(Model model, Kysymys kysymys) {
+		if (kysymys.getTyyppi().equals("teksti")) {
+			kysymysRepository.save(kysymys);
+			model.addAttribute("kysely", kysymys.getKysely());
+			model.addAttribute("kysymykset", kysymys.getKysely().getKysymykset());
+			Kysymys uusiKysymys = new Kysymys();
+			uusiKysymys.setKysely(kysymys.getKysely());
+			model.addAttribute("kysymys", uusiKysymys);
+			return "addkysymys";
+		} else if (kysymys.getTyyppi().equals("checkbox") || kysymys.getTyyppi().equals("radionappula")){
 			kysymysRepository.save(kysymys);
 			model.addAttribute("kysymys", kysymys);
-			return "tekstikysymys";
-		}else if (tyyppi.equals("radiobutton")) {
-			kysymys.setTyyppi(tyyppi);
-			kysymysRepository.save(kysymys);
-			model.addAttribute("kysymys", kysymys);
-			return "radionappula";
-		}else if (tyyppi.equals("checkbox")){
-			kysymys.setTyyppi(tyyppi);
-			kysymysRepository.save(kysymys);
-			model.addAttribute("kysymys", kysymys);
-			return "checkbox";
+			return "monivalinta";
 		}
-		System.out.println("3");
 		return "addkysymys";
+	}
+	
+	@RequestMapping(value = "/monivalinta", method = RequestMethod.POST)
+	public String monivalinta(@RequestParam String vaihtoehto, @RequestParam(value = "valmis" , required=false)String valmis, Model model, Kysymys kysymys) {
+		if (valmis == null) {
+			if (kysymys.getMonivalinta() == null) {
+				List<String> lista = new ArrayList<>();
+				lista.add(vaihtoehto);
+				kysymys.setMonivalinta(lista);
+			} else {
+				List<String> lista = kysymys.getMonivalinta();
+				lista.add(vaihtoehto);
+				kysymys.setMonivalinta(lista);
+			}
+			model.addAttribute("kysymys", kysymys);
+			kysymysRepository.save(kysymys);
+			return "monivalinta";
+		} else {
+			model.addAttribute("kysely", kysymys.getKysely());
+			model.addAttribute("kysymykset", kysymys.getKysely().getKysymykset());
+			Kysymys uusiKysymys = new Kysymys();
+			uusiKysymys.setKysely(kysymys.getKysely());
+			model.addAttribute("kysymys", uusiKysymys);
+			return "addkysymys";
+		}
+		
+	}
+	
+	
+	@RequestMapping(value = "/tyyppi", method = RequestMethod.POST)
+	public String tyyppi(@RequestParam String tyyppi, Kysymys kysymys, Model model) {
+		kysymys.setTyyppi(tyyppi);
+		model.addAttribute("kysymys", kysymys);
+		return "tekstikysymys";
 	}
 	
 	@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
@@ -80,7 +106,7 @@ public class KysymysController {
 	
 	// Lisää kysmäri
 	@RequestMapping(value = "/addkysymys")
-	public String addKysymys(Model model) {
+	public String addKysymys(Model model, Long kysely_id) {
 		model.addAttribute("kysymys", new Kysymys());
 		return "addkysymys";
 	}
