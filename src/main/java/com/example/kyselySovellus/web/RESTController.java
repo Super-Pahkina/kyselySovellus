@@ -95,9 +95,16 @@ public class RESTController {
 	public @ResponseBody Iterable<Vastaus> saveKyselynVastaukset(@RequestBody Iterable<Vastaus> lista) {
 		return vastausRepository.saveAll(lista);
 	}
-	// REST hakee kaikki vastaukset
-	@RequestMapping(value = "/vastaukset", method = RequestMethod.GET)
-	public @ResponseBody List<Vastaus>getVastaukset() {
-		return (List<Vastaus>) vastausRepository.findAll();
+	// REST hakee kyselyn vastaukset
+	@RequestMapping(value = "kyselyt/{kysely_id}/vastaukset", method = RequestMethod.GET)
+	public @ResponseBody List<Vastaus>getVastaukset(@PathVariable Long kyselyid) {
+		Iterable<Vastaus> all = vastausRepository.findAll();
+		List<Vastaus> kyselynVastaukset = new ArrayList<>();
+		for (Vastaus vastaus : all) {
+			if (vastaus.getKysymys().getKysely().getKysely_id() == kyselyid) {
+				kyselynVastaukset.add(vastaus);
+			}
+		}
+		return kyselynVastaukset;
 	}
 }
