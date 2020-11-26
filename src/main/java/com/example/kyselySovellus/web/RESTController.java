@@ -59,7 +59,7 @@ public class RESTController {
 	}
 
 	// REST hakee kaikki vastaukset tiettyyn kyselyyn
-	@RequestMapping(value = "/kysely/{id}/vastaukset", method = RequestMethod.GET)
+	@RequestMapping(value = "/kyselyt/{id}/vastaukset", method = RequestMethod.GET)
 	public @ResponseBody List<Vastaus> getAllVastaukset(@PathVariable Long kyselyid) {
 		Iterable<Vastaus> all = vastausRepository.findAll();
 		List<Vastaus> kyselynVastaukset = new ArrayList<>();
@@ -85,17 +85,17 @@ public class RESTController {
 	}
 	
 	// REST tallentaa vastauksen tietylle kysymykselle
-	 @RequestMapping(value="/vastaus", method = RequestMethod.POST)
+	 @RequestMapping(value="kyselyt/{kyselyid}/kysymykset/{kysymys_id}/vastaus", method = RequestMethod.POST)
 	 public @ResponseBody Vastaus saveVastausRest(@RequestBody Vastaus vastaus) {	
 	    	return vastausRepository.save(vastaus);
 	 }
 	 
 	// REST tallentaa tietyn kyselyn vastaukset
-	@RequestMapping(value = "/vastaukset", method = RequestMethod.POST)
+	@RequestMapping(value = "kyselyt/{kysely_id}/vastaukset", method = RequestMethod.POST)
 	public @ResponseBody Iterable<Vastaus> saveKyselynVastaukset(@RequestBody Iterable<Vastaus> lista) {
 		return vastausRepository.saveAll(lista);
 	}
-	
+	// REST hakee kaikki vastaukset
 	@RequestMapping(value = "/vastaukset", method = RequestMethod.GET)
 	public @ResponseBody List<Vastaus>getVastaukset() {
 		return (List<Vastaus>) vastausRepository.findAll();

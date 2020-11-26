@@ -8,134 +8,131 @@
 
 <body>
 
-<h1>REST Home Page</h1>
+<h1>*** REST Home Page ***</h1>
 
-<h2>Kaikki Kyselyt</h2>
-<h3>Method: GET Endpoint: <a href="/kyselyt">/kyselyt</a></h3>
-<h3>JSON Example:</h3>
+<h2><strong>* GET-metodit *</strong></h2>
+<h3>Hae kaikki kyselyt (/kyselyt):</h3>
+<h3>JSON Example: <a href="/kyselyt">/kyselyt</a></h3>
 
 <div>
 	<pre class ="tab">
 [
 	{
-		kysely_id: 1,
-		nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-		kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
-	},
-	{
-		kysely_id: 2,
-		nimi: "Koirakysely",
-		kuvaus: "Tällä kyselyllä kysellään koirista"
+		"kysely_id": 1,
+		"nimi": "Kurssipalautekysely",
+		"kuvaus": "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X."
 	}
 ]
 	</pre>
 </div>
 
-<h2>Kysely id:n perusteella</h2>
-<h3>GET /kyselyt/{kysely_id} <a href="/kyselyt/1">/kyselyt/1</a></h3>
-<h3>JSON Example:</h3>
+<h3>Hae kysely kysely_id:llä (/kyselyt/{kysely_id}):</h3>
+<h3>JSON Example: <a href="/kyselyt/1">/kyselyt/1</a></h3>
 
 <div>
 	<pre class ="tab">
-		{
-			kysely_id: 1,
-			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
-		}
+{
+	"kysely_id": 1,
+	"nimi": "Kurssipalautekysely",
+	"kuvaus": "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X."
+}
 	</pre>
 </div>
 
-<h2>Hae kaikki kysymykset</h2>
-<h3>GET /kysymykset <a href="/kysymykset">/kysymykset</a></h3>
-<h3>JSON Example:</h3>
+<h3>Hae tietyn kyselyn kysymykset (/kyselyt/{kysely_id}/kysymykset)</h3>
+<h3>JSON Example: <a href="/kyselyt/1/kysymykset">/kyselyt/1/kysymykset</a></h3>
 
 <div>
 	<pre class ="tab">
-	
 [
 	{
-		kysymys_id: 3,
-		tyyppi: "teksti",
-		vaadittu: true,
-		teksti: "Mitä elokuvaa suosittelet?",
-		kysely: {
-			kysely_id: 1,
-			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+		"kysymys_id": 2,
+		"teksti": "Mikä kurssissa oli mielestäsi hyvää?",
+		"tyyppi": "teksti",
+		"vaadittu": true,
+		"monivalinta": [],
+		"kysely": {
+			"kysely_id": 1,
+			"nimi": "Kurssipalautekysely",
+			"kuvaus": "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X."
 		}
 	},
 	{
-		kysymys_id: 4,
-		tyyppi: "teksti",
-		vaadittu: true,
-		teksti: "Mitä tv-sarjaa suosittelet?",
-		kysely: {
-			kysely_id: 1,
-			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+		"kysymys_id": 3,
+		"teksti": "Mitä voisi tehdä paremmin?",
+		"tyyppi": "teksti",
+		"vaadittu": true,
+		"monivalinta": [],
+		"kysely": {
+			"kysely_id": 1,
+			"nimi": "Kurssipalautekysely",
+			"kuvaus": "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X."
 		}
 	},
 	{
-		kysymys_id: 5,
-		tyyppi: "teksti",
-		vaadittu: true,
-		teksti: "Mitä musiikkia suosittelet?",
-		kysely: {
-			kysely_id: 1,
-			nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-			kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
+		"kysymys_id": 4,
+		"teksti": "Osallistuitko aktiivisesti?",
+		"tyyppi": "teksti",
+		"vaadittu": true,
+		"monivalinta": [],
+		"kysely": {
+			"kysely_id": 1,
+			"nimi": "Kurssipalautekysely",
+			"kuvaus": "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X."
+		}
+	},
+	{
+		"kysymys_id": 5,
+		"teksti": "Minkä arvosanan 1-5 antaisit kurssille, miksi?",
+		"tyyppi": "teksti",
+		"vaadittu": true,
+		"monivalinta": [],
+		"kysely": {
+			"kysely_id": 1,
+			"nimi": "Kurssipalautekysely",
+			"kuvaus": "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X."
+		}
+	},
+	{
+		"kysymys_id": 6,
+		"teksti": "Minkä arvosanan 1-5 antaisit itsellesi, miksi?",
+		"tyyppi": "teksti",
+		"vaadittu": true,
+		"monivalinta": [],
+		"kysely": {
+			"kysely_id": 1,
+			"nimi": "Kurssipalautekysely",
+			"kuvaus": "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X."
 		}
 	}
 ]
 
 	</pre>
 </div>
-
-<h2>Tietyn kyselyn kysymykset</h2>
-<h3>GET /kyselyt/{kysely_id}/kysymykset <a href="/kyselyt/1/kysymykset">/kyselyt/1/kysymykset</a></h3>
-<h3>JSON Example:</h3>
+<h3>Hae vastaukset tiettyyn kyselyyn (/kyselyt/{kysely_id}/vastaukset):</h3>
+<h3>JSON Example: <a href="/kyselyt/1/vastaukset">/kyselyt/1/vastaukset</a></h3>
 
 <div>
 	<pre class ="tab">
-	
-	[
-		{
-			kysymys_id: 3,
-			tyyppi: "teksti",
-			vaadittu: true,
-			teksti: "Mitä elokuvaa suosittelet?",
-			kysely: {
-				kysely_id: 1,
-				nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-				kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
-			}
-		},
-		{
-			kysymys_id: 4,
-			tyyppi: "teksti",
-			vaadittu: true,
-			teksti: "Mitä tv-sarjaa suosittelet?",
-			kysely: {
-				kysely_id: 1,
-				nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-				kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
-			}
-		},
-		{
-			kysymys_id: 5,
-			tyyppi: "teksti",
-			vaadittu: true,
-			teksti: "Mitä musiikkia suosittelet?",
-			kysely: {
-				kysely_id: 1,
-				nimi: "Kulttuurivinkkaus-kysely Syksy 2020",
-				kuvaus: "Tällä kyselyllä selvitetään tuttujen suosittelemia tärppejä, joilla voi laajentaa tajuntaansa."
-			}
-		}
-]
-
+	Whitelabel Error Page
 	</pre>
 </div>
+<h2><strong>* POST-metodit *</strong></h2>
+<h3>Tallenna vastaus tietylle kysymykselle (/kyselyt/{kyselyid}/kysymykset/{kysymys_id}/vastaus):</h3>
+<h3>JSON Example: <a href="/kyselyt/1/kysymykset/2/vastaus">/kyselyt/1/kysymykset/2/vastaus</a></h3>
 
+<div>
+	<pre class ="tab">
+	Whitelabel Error Page
+	</pre>
+</div>
+<h3>Tallenna tietyn kyselyn vastaukset (/kyselyt/{kyselyid}/vastaukset):</h3>
+<h3>JSON Example: <a href="/kyselyt/1/vastaukset">/kyselyt/1/vastaukset</a></h3>
+
+<div>
+	<pre class ="tab">
+	Whitelabel Error Page
+	</pre>
+</div>
 </body>
 </html>
