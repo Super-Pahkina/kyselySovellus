@@ -54,19 +54,31 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			kysymysrepo.save(nelkku);
 			kysymysrepo.save(viides);
 			
-			log.info("luodaan pari vastausta");
-			Vastaus n1 = new Vastaus("Joo", eka);
-			Vastaus n2 = new Vastaus("Sitä", toka);
-			Vastaus n3 = new Vastaus("E", kolmas);
-			Vastaus n4 = new Vastaus("1, siks", nelkku);
-			Vastaus n5 = new Vastaus("5, just siks", viides);
+			log.info("luodaan pari vastausta kyselyyn");
+			Vastaus v1 = new Vastaus("Ryhmätyöt", eka);
+			Vastaus v2 = new Vastaus("Kaikki oli ok", toka);
+			Vastaus v3 = new Vastaus("Olin läsnä tunneilla", kolmas);
+			Vastaus v4 = new Vastaus("4, mikään ei voi olla täydellinen", nelkku);
+			Vastaus v5 = new Vastaus("5, paitsi minä", viides);
+			
+			Vastaus v11 = new Vastaus("Mielenkiintoinen aihe", eka);
+			Vastaus v22 = new Vastaus("En keksi mitään", toka);
+			Vastaus v33 = new Vastaus("Lintsasin jonkin verran", kolmas);
+			Vastaus v44 = new Vastaus("4, ei valittamista", nelkku);
+			Vastaus v55 = new Vastaus("3, en ansaitse parempaa", viides);
 			
 			log.info("tallennetaan vastaukset repoon");
-			vastausrepo.save(n1);
-			vastausrepo.save(n2);
-			vastausrepo.save(n3);
-			vastausrepo.save(n4);
-			vastausrepo.save(n5);
+			vastausrepo.save(v1);
+			vastausrepo.save(v2);
+			vastausrepo.save(v3);
+			vastausrepo.save(v4);
+			vastausrepo.save(v5);
+			
+			vastausrepo.save(v11);
+			vastausrepo.save(v22);
+			vastausrepo.save(v33);
+			vastausrepo.save(v44);
+			vastausrepo.save(v55);
 			
 		};
 		
