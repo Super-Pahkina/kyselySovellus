@@ -58,19 +58,6 @@ public class RESTController {
 		return (List<Kysymys>) kysymysRepository.findAll();
 	}
 
-	// REST hakee kaikki vastaukset tiettyyn kyselyyn
-	@RequestMapping(value = "/kyselyt/{id}/vastaukset", method = RequestMethod.GET)
-	public @ResponseBody List<Vastaus> getAllVastaukset(@PathVariable Long kyselyid) {
-		Iterable<Vastaus> all = vastausRepository.findAll();
-		List<Vastaus> kyselynVastaukset = new ArrayList<>();
-		for (Vastaus vastaus : all) {
-			if (vastaus.getKysymys().getKysely().getKysely_id() == kyselyid) {
-				kyselynVastaukset.add(vastaus);
-			}
-		}
-		return kyselynVastaukset;
-	}
-
 	// REST tietyn kyselyn kysymykset
 	@RequestMapping(value = "kyselyt/{kyselyid}/kysymykset", method = RequestMethod.GET)
 	public @ResponseBody List<Kysymys> getKyselynKysymykset(@PathVariable Long kyselyid) {
@@ -84,20 +71,9 @@ public class RESTController {
 		return kyselynKysymykset;
 	}
 	
-	// REST tallentaa vastauksen tietylle kysymykselle
-	 @RequestMapping(value="kyselyt/{kysely_id}/kysymykset/{kysymys_id}/vastaus", method = RequestMethod.POST)
-	 public @ResponseBody Vastaus saveVastausRest(@RequestBody Vastaus vastaus) {	
-	    	return vastausRepository.save(vastaus);
-	 }
-	 
-	// REST tallentaa tietyn kyselyn vastaukset
-	@RequestMapping(value = "kyselyt/{kysely_id}/vastaukset", method = RequestMethod.POST)
-	public @ResponseBody Iterable<Vastaus> saveKyselynVastaukset(@RequestBody Iterable<Vastaus> lista) {
-		return vastausRepository.saveAll(lista);
-	}
-	// REST hakee kyselyn vastaukset
-	@RequestMapping(value = "kyselyt/{kysely_id}/vastaukset", method = RequestMethod.GET)
-	public @ResponseBody List<Vastaus>getVastaukset(@PathVariable Long kyselyid) {
+	// REST hakee kaikki vastaukset tiettyyn kyselyyn
+	@RequestMapping(value = "/kyselyt/{kyselyid}/vastaukset", method = RequestMethod.GET)
+	public @ResponseBody List<Vastaus> getAllVastaukset(@PathVariable Long kyselyid) {
 		Iterable<Vastaus> all = vastausRepository.findAll();
 		List<Vastaus> kyselynVastaukset = new ArrayList<>();
 		for (Vastaus vastaus : all) {
@@ -106,5 +82,17 @@ public class RESTController {
 			}
 		}
 		return kyselynVastaukset;
+	}
+	
+	// REST tallentaa vastauksen tietylle kysymykselle
+	 @RequestMapping(value="kyselyt/{kyselyid}/kysymykset/{kysymys_id}/vastaus", method = RequestMethod.POST)
+	 public @ResponseBody Vastaus saveVastausRest(@RequestBody Vastaus vastaus) {	
+	    	return vastausRepository.save(vastaus);
+	 }
+	 
+	// REST tallentaa tietyn kyselyn vastaukset
+	@RequestMapping(value = "kyselyt/{kyselyid}/vastaukset2", method = RequestMethod.POST)
+	public @ResponseBody Iterable<Vastaus> saveKyselynVastaukset(@RequestBody Iterable<Vastaus> lista) {
+		return vastausRepository.saveAll(lista);
 	}
 }

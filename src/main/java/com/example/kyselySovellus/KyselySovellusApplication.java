@@ -14,6 +14,8 @@ import com.example.kyselySovellus.domain.Kysely;
 import com.example.kyselySovellus.domain.KyselyRepository;
 import com.example.kyselySovellus.domain.Kysymys;
 import com.example.kyselySovellus.domain.KysymysRepository;
+import com.example.kyselySovellus.domain.Vastaus;
+import com.example.kyselySovellus.domain.VastausRepository;
 
 @SpringBootApplication
 public class KyselySovellusApplication extends SpringBootServletInitializer {
@@ -30,7 +32,7 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(KyselyRepository kyselyrepo, KysymysRepository kysymysrepo) {
+	public CommandLineRunner demo(KyselyRepository kyselyrepo, KysymysRepository kysymysrepo, VastausRepository vastausrepo) {
 		return(args)-> {
 			
 			log.info("luodaan kysely");
@@ -51,6 +53,20 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			kysymysrepo.save(kolmas);
 			kysymysrepo.save(nelkku);
 			kysymysrepo.save(viides);
+			
+			log.info("luodaan pari vastausta");
+			Vastaus n1 = new Vastaus("Joo", eka);
+			Vastaus n2 = new Vastaus("Sitä", toka);
+			Vastaus n3 = new Vastaus("E", kolmas);
+			Vastaus n4 = new Vastaus("1, siks", nelkku);
+			Vastaus n5 = new Vastaus("5, just siks", viides);
+			
+			log.info("tallennetaan vastaukset repoon");
+			vastausrepo.save(n1);
+			vastausrepo.save(n2);
+			vastausrepo.save(n3);
+			vastausrepo.save(n4);
+			vastausrepo.save(n5);
 			
 		};
 		
