@@ -80,6 +80,48 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			vastausrepo.save(v44);
 			vastausrepo.save(v55);
 			
+			Kysely tokakysely = new Kysely("Työharjoittelukysely", "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia työharjoittelusta", null);
+			kyselyrepo.save(tokakysely);
+			
+			log.info("luodaan pari kysymystä");
+			Kysymys eka2 = new Kysymys("Mikä työharjoittelussa oli mielestäsi hyvää?", "teksti",true, tokakysely);
+			Kysymys toka2 = new Kysymys("Mitä voisi tehdä paremmin?", "teksti",true, tokakysely);
+			Kysymys kolmas2 = new Kysymys("Osallistuitko aktiivisesti?", "teksti",true,  tokakysely);
+			Kysymys nelkku2 = new Kysymys("Minkä arvosanan 1-5 antaisit työharjoittelulle, miksi?", "teksti",true, tokakysely);
+			Kysymys viides2 = new Kysymys("Minkä arvosanan 1-5 antaisit itsellesi, miksi?", "teksti",true, tokakysely);
+			
+			log.info("tallennetaan kysymykset repoon");
+			kysymysrepo.save(eka2);
+			kysymysrepo.save(toka2);
+			kysymysrepo.save(kolmas2);
+			kysymysrepo.save(nelkku2);
+			kysymysrepo.save(viides2);
+			
+			log.info("luodaan pari vastausta kyselyyn");
+			Vastaus v16 = new Vastaus("Hyvä palkka", eka);
+			Vastaus v26 = new Vastaus("Olla ajoissa töissä", toka);
+			Vastaus v36 = new Vastaus("Keitin kahvia", kolmas);
+			Vastaus v46 = new Vastaus("4, mikään ei voi olla täydellinen", nelkku);
+			Vastaus v56 = new Vastaus("5, olin tosi taitava kaikessa", viides);
+			
+			Vastaus v17 = new Vastaus("Kivat työkaverit", eka);
+			Vastaus v27 = new Vastaus("En keksi mitään", toka);
+			Vastaus v37 = new Vastaus("Join kahvia", kolmas);
+			Vastaus v47 = new Vastaus("4, ei valittamista", nelkku);
+			Vastaus v57 = new Vastaus("3, en ansaitse parempaa", viides);
+			
+			log.info("tallennetaan vastaukset repoon");
+			vastausrepo.save(v16);
+			vastausrepo.save(v26);
+			vastausrepo.save(v36);
+			vastausrepo.save(v46);
+			vastausrepo.save(v56);
+			
+			vastausrepo.save(v17);
+			vastausrepo.save(v27);
+			vastausrepo.save(v37);
+			vastausrepo.save(v47);
+			vastausrepo.save(v57);
 		};
 		
 	}
