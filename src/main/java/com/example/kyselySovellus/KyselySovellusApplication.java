@@ -98,17 +98,17 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			kysymysrepo.save(viides2);
 			
 			log.info("luodaan pari vastausta kyselyyn");
-			Vastaus v16 = new Vastaus("Hyvä palkka", eka);
-			Vastaus v26 = new Vastaus("Olla ajoissa töissä", toka);
-			Vastaus v36 = new Vastaus("Keitin kahvia", kolmas);
-			Vastaus v46 = new Vastaus("4, mikään ei voi olla täydellinen", nelkku);
-			Vastaus v56 = new Vastaus("5, olin tosi taitava kaikessa", viides);
+			Vastaus v16 = new Vastaus("Hyvä palkka", eka2);
+			Vastaus v26 = new Vastaus("Olla ajoissa töissä", toka2);
+			Vastaus v36 = new Vastaus("Keitin kahvia", kolmas2);
+			Vastaus v46 = new Vastaus("4, mikään ei voi olla täydellinen", nelkku2);
+			Vastaus v56 = new Vastaus("5, olin tosi taitava kaikessa", viides2);
 			
-			Vastaus v17 = new Vastaus("Kivat työkaverit", eka);
-			Vastaus v27 = new Vastaus("En keksi mitään", toka);
-			Vastaus v37 = new Vastaus("Join kahvia", kolmas);
-			Vastaus v47 = new Vastaus("4, ei valittamista", nelkku);
-			Vastaus v57 = new Vastaus("3, en ansaitse parempaa", viides);
+			Vastaus v17 = new Vastaus("Kivat työkaverit", eka2);
+			Vastaus v27 = new Vastaus("En keksi mitään", toka2);
+			Vastaus v37 = new Vastaus("Join kahvia", kolmas2);
+			Vastaus v47 = new Vastaus("4, ei valittamista", nelkku2);
+			Vastaus v57 = new Vastaus("3, en ansaitse parempaa", viides2);
 			
 			log.info("tallennetaan vastaukset repoon");
 			vastausrepo.save(v16);
