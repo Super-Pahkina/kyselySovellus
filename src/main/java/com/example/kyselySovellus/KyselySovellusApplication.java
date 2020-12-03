@@ -1,6 +1,9 @@
 package com.example.kyselySovellus;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -39,13 +42,27 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Kysely ekakysely = new Kysely("Kurssipalautekysely", "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia kurssista X.", null);
 			kyselyrepo.save(ekakysely);
 			
+			List<String> lista = new ArrayList();
+			String vaihtoehto1 = "1";
+			String vaihtoehto2 = "2";
+			String vaihtoehto3 = "3";
+			String vaihtoehto4 = "4";
+			String vaihtoehto5 = "5";
+			lista.add(vaihtoehto1);
+			lista.add(vaihtoehto2);
+			lista.add(vaihtoehto3);
+			lista.add(vaihtoehto4);
+			lista.add(vaihtoehto5);
+			
 			
 			log.info("luodaan pari kysymystä");
 			Kysymys eka = new Kysymys("Mikä kurssissa oli mielestäsi hyvää?", "teksti",true, ekakysely);
 			Kysymys toka = new Kysymys("Mitä voisi tehdä paremmin?", "teksti",true, ekakysely);
 			Kysymys kolmas = new Kysymys("Osallistuitko aktiivisesti?", "teksti",true,  ekakysely);
-			Kysymys nelkku = new Kysymys("Minkä arvosanan 1-5 antaisit kurssille, miksi?", "teksti",true, ekakysely);
-			Kysymys viides = new Kysymys("Minkä arvosanan 1-5 antaisit itsellesi, miksi?", "teksti",true, ekakysely);
+			Kysymys nelkku = new Kysymys("Minkä arvosanan 1-5 antaisit kurssille?", "radionappula",true, ekakysely);
+			Kysymys viides = new Kysymys("Minkä arvosanan 1-5 antaisit itsellesi?", "checkbox",true, ekakysely);
+			nelkku.setMonivalinta(lista);
+			viides.setMonivalinta(lista);
 			
 			log.info("tallennetaan kysymykset repoon");
 			kysymysrepo.save(eka);
@@ -58,14 +75,17 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Vastaus v1 = new Vastaus("Ryhmätyöt", eka);
 			Vastaus v2 = new Vastaus("Kaikki oli ok", toka);
 			Vastaus v3 = new Vastaus("Olin läsnä tunneilla", kolmas);
-			Vastaus v4 = new Vastaus("4, mikään ei voi olla täydellinen", nelkku);
-			Vastaus v5 = new Vastaus("5, paitsi minä", viides);
+			Vastaus v4 = new Vastaus("4", nelkku);
+			Vastaus v5 = new Vastaus("5", viides);
 			
 			Vastaus v11 = new Vastaus("Mielenkiintoinen aihe", eka);
 			Vastaus v22 = new Vastaus("En keksi mitään", toka);
 			Vastaus v33 = new Vastaus("Lintsasin jonkin verran", kolmas);
-			Vastaus v44 = new Vastaus("4, ei valittamista", nelkku);
-			Vastaus v55 = new Vastaus("3, en ansaitse parempaa", viides);
+			Vastaus v44 = new Vastaus("4", nelkku);
+			Vastaus v55 = new Vastaus("3", viides);
+			Vastaus v66 = new Vastaus();
+			v66.setCheckbox(lista);
+			v66.setKysymys(viides);
 			
 			log.info("tallennetaan vastaukset repoon");
 			vastausrepo.save(v1);
@@ -79,6 +99,7 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			vastausrepo.save(v33);
 			vastausrepo.save(v44);
 			vastausrepo.save(v55);
+			vastausrepo.save(v66);
 			
 			Kysely tokakysely = new Kysely("Työharjoittelukysely", "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia työharjoittelusta", null);
 			kyselyrepo.save(tokakysely);
@@ -87,8 +108,10 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Kysymys eka2 = new Kysymys("Mikä työharjoittelussa oli mielestäsi hyvää?", "teksti",true, tokakysely);
 			Kysymys toka2 = new Kysymys("Mitä voisi tehdä paremmin?", "teksti",true, tokakysely);
 			Kysymys kolmas2 = new Kysymys("Osallistuitko aktiivisesti?", "teksti",true,  tokakysely);
-			Kysymys nelkku2 = new Kysymys("Minkä arvosanan 1-5 antaisit työharjoittelulle, miksi?", "teksti",true, tokakysely);
-			Kysymys viides2 = new Kysymys("Minkä arvosanan 1-5 antaisit itsellesi, miksi?", "teksti",true, tokakysely);
+			Kysymys nelkku2 = new Kysymys("Minkä arvosanan 1-5 antaisit työharjoittelulle?", "radionappula",true, tokakysely);
+			Kysymys viides2 = new Kysymys("Minkä arvosanan 1-5 antaisit itsellesi?", "checkbox",true, tokakysely);
+			nelkku2.setMonivalinta(lista);
+			viides2.setMonivalinta(lista);
 			
 			log.info("tallennetaan kysymykset repoon");
 			kysymysrepo.save(eka2);
