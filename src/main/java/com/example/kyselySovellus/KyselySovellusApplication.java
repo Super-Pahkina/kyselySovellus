@@ -205,7 +205,7 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			String manteli = "Mantelilastuilla";
 			String viini = "Hehkuviinillä";
 			String raaka = "Sellaisenaan";
-			String muuta = "Laitan sekaan jotakin muuta";
+			String muuta = "Jotakin muuta";
 			String eijuo = "En juo glögiä";
 			lisuke.add(rusina);
 			lisuke.add(manteli);
