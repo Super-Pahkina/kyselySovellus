@@ -6,13 +6,16 @@
 </head>
 
 <body>
-	<form th:object="${kysely}" th:action="@{savekysely}" action="#" method="post">
-		<label for="nimi">Kyselyn nimi: </label>
-		<input type="text" id="nimi" th:field="*{nimi}" /></br>
-		<label for="kuvaus">Kyselyn kuvaus: </label>
-		<input type="text" id="kuvaus" th:field="*{kuvaus}" /></br>
-		<input type="submit" value="Valmis"></input>
-	</form>
+	<h1>Luo uusi kysely</h1>
+    <form th:object="${kysely}" th:action="@{/savekysely}" action="#" method="post">
+        <label for="nimi">Kyselyn nimi: </label>
+        <input type="text" id="nimi" th:field="*{nimi}" />
+        <p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Error</p></br>
+        <label for="kuvaus">Kyselyn kuvaus: </label>
+        <input type="text" id="kuvaus" th:field="*{kuvaus}" />
+        <p th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">Error</p>
+        <input type="submit" value="Valmis"></input>
+    </form>
 </body>
 
 </html>

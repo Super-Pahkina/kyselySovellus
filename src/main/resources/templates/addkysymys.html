@@ -31,6 +31,7 @@
 			<span th:if="${kysymys.kysymys_id == i}">
 			<form th:object="${kysymys}" th:action="@{/editkysymys}" action="#" method="post" style="display:inline">
 				<input type="text" th:field="*{teksti}" class="form-control"  />
+				<p th:if="${#fields.hasErrors('teksti')}" th:errors="*{teksti}">Error</p>
 				<input type="hidden" name="i" th:value="${i}" class="form-control" />
 				<input type="submit" value="Tallenna" style="background-color: lightblue"></input>
 			</form>

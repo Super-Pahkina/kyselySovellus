@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,6 +18,7 @@ public class Vastaus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long vastaus_id;
+	@NotNull
 	private String syote;
 	@ElementCollection(targetClass=String.class)
 	private List<String> checkbox;

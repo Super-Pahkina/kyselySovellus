@@ -83,9 +83,7 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Vastaus v33 = new Vastaus("Lintsasin jonkin verran", kolmas);
 			Vastaus v44 = new Vastaus("4", nelkku);
 			Vastaus v55 = new Vastaus("3", viides);
-			Vastaus v66 = new Vastaus();
-			v66.setCheckbox(lista);
-			v66.setKysymys(viides);
+			
 			
 			log.info("tallennetaan vastaukset repoon");
 			vastausrepo.save(v1);
@@ -99,7 +97,7 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			vastausrepo.save(v33);
 			vastausrepo.save(v44);
 			vastausrepo.save(v55);
-			vastausrepo.save(v66);
+			
 			
 			Kysely tokakysely = new Kysely("Työharjoittelukysely", "Tällä kyselyllä selvitetään opiskelijoiden kokemuksia työharjoittelusta", null);
 			kyselyrepo.save(tokakysely);
@@ -124,14 +122,14 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Vastaus v16 = new Vastaus("Hyvä palkka", eka2);
 			Vastaus v26 = new Vastaus("Olla ajoissa töissä", toka2);
 			Vastaus v36 = new Vastaus("Keitin kahvia", kolmas2);
-			Vastaus v46 = new Vastaus("4, mikään ei voi olla täydellinen", nelkku2);
-			Vastaus v56 = new Vastaus("5, olin tosi taitava kaikessa", viides2);
+			Vastaus v46 = new Vastaus("4", nelkku2);
+			Vastaus v56 = new Vastaus("5", viides2);
 			
 			Vastaus v17 = new Vastaus("Kivat työkaverit", eka2);
 			Vastaus v27 = new Vastaus("En keksi mitään", toka2);
 			Vastaus v37 = new Vastaus("Join kahvia", kolmas2);
-			Vastaus v47 = new Vastaus("4, ei valittamista", nelkku2);
-			Vastaus v57 = new Vastaus("3, en ansaitse parempaa", viides2);
+			Vastaus v47 = new Vastaus( "4", nelkku2);
+			Vastaus v57 = new Vastaus("3", viides2);
 			
 			log.info("tallennetaan vastaukset repoon");
 			vastausrepo.save(v16);
@@ -197,19 +195,8 @@ public class KyselySovellusApplication extends SpringBootServletInitializer {
 			Kysymys lahjatoive = new Kysymys("Mikä olisi sinun unelmiesi joululahja?", "teksti", true, joulukysely);
 			kysymysrepo.save(lahjatoive);
 			
-			Kysymys valkoinen = new Kysymys("Kuinka tärkeänä pidät valkoista joulua? (1 = vähän -> 5 = erittäin)", "radionappula", true, joulukysely);
+			Kysymys valkoinen = new Kysymys("Kuinka tärkeänä pidät valkoista joulua? (1 = vähän -> 5 = erittäin)", "skaala", true, joulukysely);
 			List<String> prio = new ArrayList<String>();
-			String prio1 = "1";
-			String prio2 = "2";
-			String prio3 = "3";
-			String prio4 = "4";
-			String prio5 = "5";
-			prio.add(prio1);
-			prio.add(prio2);
-			prio.add(prio3);
-			prio.add(prio4);
-			prio.add(prio5);
-			valkoinen.setMonivalinta(prio);
 			kysymysrepo.save(valkoinen);
 			
 			Kysymys glogi = new Kysymys("Miten juot glögisi? (voit valita useamman vaihtoehdon)", "checkbox", true, joulukysely);

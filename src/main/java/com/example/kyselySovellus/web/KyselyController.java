@@ -3,12 +3,16 @@ package com.example.kyselySovellus.web;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
+
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,12 +50,15 @@ public class KyselyController {
 
 	// tallentaa kyselyn
 	@RequestMapping(value = "/savekysely", method = RequestMethod.POST)
-	public String save(Model model, Kysely kysely) {
-		kyselyRepository.save(kysely);
-		model.addAttribute(kysely);
-		model.addAttribute("kysymys", new Kysymys());
-		return "redirect:/";
-	}
+    public String save(@Valid Kysely kysely,BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            return "luokysely";
+        } else {
+	        kyselyRepository.save(kysely);
+	        model.addAttribute(kysely);
+	        return "redirect:/";
+        }
+    }
 
 	@RequestMapping(value = "/edit/{id}")
 	public String editKysely(@PathVariable("id") Long kysely_id, Model model) {
@@ -75,8 +82,12 @@ public class KyselyController {
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteKysely(@PathVariable("id") Long kysely_id, Model model) {
-		kyselyRepository.deleteById(kysely_id);
-		return "redirect:/";
+		try {
+			kyselyRepository.deleteById(kysely_id);
+			return "redirect:/";
+		} catch (Exception e) {
+			return "redirect:/";
+		}
 	}
 	
 	@RequestMapping(value = "/piilotus/{id}", method = RequestMethod.GET)

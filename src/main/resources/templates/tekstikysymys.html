@@ -6,9 +6,11 @@
 </head>
 
 <body>
+	<h1>Luo uusi kysymys</h1>
 	<form th:object="${kysymys}" th:action="@{../ohjaa}" action="#" method="post">
 		<label for="teksti">Kysymys: </label>
 		<input type="text" id="teksti" th:field="*{teksti}" /></br>
+		<p th:if="${#fields.hasErrors('teksti')}" th:errors="*{teksti}">Error</p></br>
 		<input type="hidden" th:field="*{tyyppi}" class="form-control" />
 		<input type="hidden" th:field="*{kysely}" class="form-control" />
 		<input type="hidden" th:field="*{kysymys_id}" class="form-control" />

@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -17,8 +19,13 @@ public class Kysely {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long kysely_id;
-	private String nimi;
-	private String kuvaus;
+	@NotNull
+    @Size(min=2, max=100)
+    private String nimi;
+
+    @NotNull
+    @Size(min=2, max=100)
+    private String kuvaus;
 	private boolean piilotettu;
 //	private LocalDate luontipvm;
 

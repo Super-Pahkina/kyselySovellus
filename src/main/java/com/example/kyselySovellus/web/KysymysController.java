@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +36,11 @@ public class KysymysController {
 	
 	// tallentaa kyssärin
 	@RequestMapping(value = "/ohjaa", method = RequestMethod.POST)
-	public String tyyppi(Model model, Kysymys kysymys) {
+	public String tyyppi(@Valid Kysymys kysymys, BindingResult bindingResult, Model model ) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("kysymys", kysymys);
+            return "tekstikysymys";
+        }
 		if (kysymys.getTyyppi().equals("teksti") || kysymys.getTyyppi().equals("skaala")) {
 			kysymysRepository.save(kysymys);
 			model.addAttribute("kysely", kysymys.getKysely());
@@ -59,8 +66,11 @@ public class KysymysController {
 				kysymys.setMonivalinta(lista);
 			} else {
 				List<String> lista = kysymys.getMonivalinta();
-				lista.add(vaihtoehto);
-				kysymys.setMonivalinta(lista);
+				if (vaihtoehto.equals("")) {
+				} else {
+					lista.add(vaihtoehto);
+					kysymys.setMonivalinta(lista);
+				}
 			}
 			model.addAttribute("kysymys", kysymys);
 			kysymysRepository.save(kysymys);
@@ -85,33 +95,53 @@ public class KysymysController {
 	}
 	
 	@RequestMapping(value = "/savekysymys", method = RequestMethod.POST)
-	public String save(Kysymys kysymys, Model model) {
-		if (!kysymys.getTeksti().equals("")) {
-			kysymysRepository.save(kysymys);
-		}
-		Iterable<Kysymys> all = kysymysRepository.findAll();
-		List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
-		for(Kysymys kysymys2 : all) {
-			if(kysymys2.getKysely().getKysely_id() == kysymys.getKysely().getKysely_id()) {
-				kyselynKysymykset.add(kysymys2);
-			}
-		}
-		Optional<Kysely> kyselyopt = kyselyRepository.findById(kysymys.getKysely().getKysely_id());
-		Kysely kysely = kyselyopt.get();
-		Kysymys kysymys3 = new Kysymys ("", kysely);
-		model.addAttribute("kysymys", kysymys3);
-		model.addAttribute("kysymykset", kyselynKysymykset);
-		return "addkysymys";
-	}
+    public String save(@Valid Kysymys kysymys, BindingResult bindingResult, Model model) {
+        if (!kysymys.getTeksti().equals("")) {
+            kysymysRepository.save(kysymys);
+        }
+        if(bindingResult.hasErrors()) {
+            return "addkysely";
+        } else {
+        Iterable<Kysymys> all = kysymysRepository.findAll();
+        List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
+        for(Kysymys kysymys2 : all) {
+            if(kysymys2.getKysely().getKysely_id() == kysymys.getKysely().getKysely_id()) {
+                kyselynKysymykset.add(kysymys2);
+            }
+        }
+        Optional<Kysely> kyselyopt = kyselyRepository.findById(kysymys.getKysely().getKysely_id());
+        Kysely kysely = kyselyopt.get();
+        Kysymys kysymys3 = new Kysymys ("", kysely);
+        model.addAttribute("kysymys", kysymys3);
+        model.addAttribute("kysymykset", kyselynKysymykset);
+        return "addkysymys";
+    }
+    }
 	
 	//Tallentaa muokatun kysymyksen
 	@RequestMapping(value = "/editkysymys", method = RequestMethod.POST)
-	public String edit(Kysymys kysymys, Model model, @RequestParam(value = "i") String i) {
+	public String edit(@Valid Kysymys kysymys, BindingResult bindingResult, Model model, @RequestParam(value = "i") String i) {
+		if(bindingResult.hasErrors()) {
+			Long id = Long.parseLong(i);
+			Optional<Kysymys> kyselyopt2 = kysymysRepository.findById(id);
+			Kysymys kysmäri = kyselyopt2.get();
+			Iterable<Kysymys> all = kysymysRepository.findAll();
+			List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
+			for(Kysymys kysymys2 : all) {
+				if(kysymys2.getKysely().getKysely_id() == kysmäri.getKysely().getKysely_id()) {
+					kyselynKysymykset.add(kysymys2);
+				}
+			}
+			Optional<Kysely> kyselyopt = kyselyRepository.findById(kysmäri.getKysely().getKysely_id());
+			Kysely kysely = kyselyopt.get();
+			model.addAttribute("kysely", kysely);
+			model.addAttribute("kysymykset", kyselynKysymykset);
+			return "addkysymys";
+        }
 		Long id = Long.parseLong(i);
 		Optional<Kysymys> kyselyopt2 = kysymysRepository.findById(id);
 		Kysymys kysmäri = kyselyopt2.get();
 		kysmäri.setTeksti(kysymys.getTeksti());
-		System.out.println(kysmäri.getKysymys_id());
 		kysymysRepository.save(kysmäri);
 		Iterable<Kysymys> all = kysymysRepository.findAll();
 		List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
@@ -186,10 +216,14 @@ public class KysymysController {
 		public String lisaaMonivalinta(@PathVariable("id") Long kysymys_id, Model model, @RequestParam(value = "vaihtoehto")String vaihtoehto) {
 			Optional<Kysymys> kyselyopt2 = kysymysRepository.findById(kysymys_id);
 			Kysymys kysmäri = kyselyopt2.get();
+			if (vaihtoehto.equals("")) {
+			} else {
+			
 			List<String> lista = kysmäri.getMonivalinta();
 			lista.add(vaihtoehto);
 			kysmäri.setMonivalinta(lista);
 			kysymysRepository.save(kysmäri);
+			}
 			Iterable<Kysymys> all = kysymysRepository.findAll();
 			List<Kysymys> kyselynKysymykset= new ArrayList<>(); 
 			for(Kysymys kysymys2 : all) {
@@ -203,8 +237,6 @@ public class KysymysController {
 			model.addAttribute("kysely", kysely);
 			model.addAttribute("kysymys", kysmäri);
 			model.addAttribute("kysymykset", kyselynKysymykset);
-			
-			
 			return "addkysymys";
 		}
 			
@@ -219,10 +251,17 @@ public class KysymysController {
 	
 	@RequestMapping(value = "/deleteKyssari/{id}", method = RequestMethod.GET)
 	public String deleteKysymys(@PathVariable("id") Long kysymys_id, Model model) {
-		Optional<Kysymys> kysymysopt = kysymysRepository.findById(kysymys_id);
-		Kysymys kysymys = kysymysopt.get();
-		Kysely kysely = kysymys.getKysely();
-		kysymysRepository.deleteById(kysymys_id);
-		return "redirect:/edit/" + kysely.getKysely_id();
+		try {
+			Optional<Kysymys> kysymysopt = kysymysRepository.findById(kysymys_id);
+			Kysymys kysymys = kysymysopt.get();
+			Kysely kysely = kysymys.getKysely();
+			kysymysRepository.deleteById(kysymys_id);
+			return "redirect:/edit/" + kysely.getKysely_id();
+		} catch (Exception e) {
+			Optional<Kysymys> kysymysopt = kysymysRepository.findById(kysymys_id);
+			Kysymys kysymys = kysymysopt.get();
+			Kysely kysely = kysymys.getKysely();
+			return "redirect:/edit/" + kysely.getKysely_id();
+		}
 	}
 }

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.example.kyselySovellus.domain.Kysely;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,7 +20,9 @@ public class Kysymys {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long kysymys_id;
-	String teksti;
+	@NotNull
+    @Size(min=1, max=100)
+    String teksti;
 	String tyyppi;
 	Boolean vaadittu;
 	@ElementCollection(targetClass=String.class)
