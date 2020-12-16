@@ -34,7 +34,7 @@ public class KysymysController {
 	// tallentaa kyssärin
 	@RequestMapping(value = "/ohjaa", method = RequestMethod.POST)
 	public String tyyppi(Model model, Kysymys kysymys) {
-		if (kysymys.getTyyppi().equals("teksti")) {
+		if (kysymys.getTyyppi().equals("teksti") || kysymys.getTyyppi().equals("skaala")) {
 			kysymysRepository.save(kysymys);
 			model.addAttribute("kysely", kysymys.getKysely());
 			model.addAttribute("kysymykset", kysymys.getKysely().getKysymykset());
@@ -122,9 +122,7 @@ public class KysymysController {
 		}
 		Optional<Kysely> kyselyopt = kyselyRepository.findById(kysmäri.getKysely().getKysely_id());
 		Kysely kysely = kyselyopt.get();
-		Kysymys kysymys3 = new Kysymys ("", kysely);
 		model.addAttribute("kysely", kysely);
-		model.addAttribute("kysymys", kysymys3);
 		model.addAttribute("kysymykset", kyselynKysymykset);
 		return "addkysymys";
 	}

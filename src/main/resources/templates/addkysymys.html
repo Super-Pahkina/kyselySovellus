@@ -8,10 +8,26 @@
 <body>
 	<h1 th:text="${kysely.nimi}"> </h1>
 	<p th:text="${kysely.kuvaus}"></p>
+	<h1>Luo uusi kysymys</h1>
+	<form th:object="${kysymys}" th:action="@{/tyyppi}" method="post">
+	<input type="hidden" th:field="*{kysely}" class="form-control" />
+	<input type="hidden" th:field="*{kysymys_id}" class="form-control" />
+		<label for="Valitse seuraavan kysymyksen tyyppi">Valitse seuraavan kysymyksen tyyppi</label>
+			<button type="submit" name="tyyppi" value="teksti">Teksti</button>
+			<button type="submit" name="tyyppi" value="radionappula">Radionappula</button>
+			<button type="submit" name="tyyppi" value="checkbox">Checkbox</button>
+			<button type="submit" name="tyyppi" value="skaala">Skaala (1-5)</button>
+		<br>
+	</form>
+	</br>
+	<form method="get" action="/">
+    	<button type="submit" style="background-color: #8af750">Valmis</button>
+	</form>
+	
 	<p>Kysymykset:</p>
 
 	<ul th:each= "kysymys:${kysymykset}">
-		<li><span style="float: left"><span th:unless="${kysymys.kysymys_id == i}"><span th:text= "${ kysymys.teksti }"></span></span>
+		<li style="max-width: 450px"><span style="float: left"><span th:unless="${kysymys.kysymys_id == i}"><span th:text= "${ kysymys.teksti }"></span></span>
 			<span th:if="${kysymys.kysymys_id == i}">
 			<form th:object="${kysymys}" th:action="@{/editkysymys}" action="#" method="post" style="display:inline">
 				<input type="text" th:field="*{teksti}" class="form-control"  />
@@ -26,7 +42,7 @@
 			<a th:href="@{/deleteKyssari/{id}(id=${kysymys.kysymys_id})}">
 			<button type="button" style="background-color: #f34036; color: white">Poista</button></a></li>
 			</span>
-			 
+			<span th:if="${kysymys.tyyppi == 'radionappula' || kysymys.tyyppi == 'checkbox'}"><br /></span>
 			<ul th:each= "vaihtoehto:${kysymys.monivalinta}">
 				<li>
 					<p th:text= "${ vaihtoehto }" />
@@ -50,21 +66,7 @@
 	</ul>
 	</span>
 	
-	<h1>Luo uusi kysymys</h1>
-	<form th:object="${kysymys}" th:action="@{/tyyppi}" method="post">
-	<input type="hidden" th:field="*{kysely}" class="form-control" />
-	<input type="hidden" th:field="*{kysymys_id}" class="form-control" />
-		<label for="Valitse seuraavan kysymyksen tyyppi">Valitse seuraavan kysymyksen tyyppi</label>
-			<button type="submit" name="tyyppi" value="teksti">Teksti</button>
-			<button type="submit" name="tyyppi" value="radionappula">Radionappula</button>
-			<button type="submit" name="tyyppi" value="checkbox">checkbox</button>
-		<br>
-		<input type="submit" value="Tallenna" style="background-color: lightblue"></input>
-	</form>
-	</br>
-	<form method="get" action="/">
-    	<button type="submit" style="background-color: #8af750">Valmis</button>
-	</form>
+	
 
 </body>
 </html>
