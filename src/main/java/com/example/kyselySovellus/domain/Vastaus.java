@@ -18,7 +18,6 @@ public class Vastaus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long vastaus_id;
-	@NotNull
 	private String syote;
 	@ElementCollection(targetClass=String.class)
 	private List<String> checkbox;
