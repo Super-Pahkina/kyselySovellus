@@ -14,6 +14,7 @@
 			<td><a th:href="@{/edit/{id}(id=${kysely.kysely_id})}">Syötä kysymyksiä</a></td>
   			<td><a th:href="@{/kyselyt/{id}/kysymykset(id=${kysely.kysely_id})}">Näytä</a></td>
 			<td><a th:href="@{/delete/{id}(id=${kysely.kysely_id})}">Delete</a></td>
+			<td><a th:href="@{/piilotus/{id}(id=${kysely.kysely_id})}">Piilotettu:<span th:text="${kysely.piilotettu}"></span></a></td>
 		</tr>
 	</table>
 
