@@ -19,6 +19,7 @@ public class Kysely {
 	private Long kysely_id;
 	private String nimi;
 	private String kuvaus;
+	private boolean piilotettu;
 //	private LocalDate luontipvm;
 
 	@JsonBackReference
@@ -34,6 +35,7 @@ public class Kysely {
 		this.kuvaus = kuvaus;
 	//	this.luontipvm = LocalDate.now();
 		this.kysymykset = kysymykset;
+		this.piilotettu = false;
 	}
 
 
@@ -43,6 +45,8 @@ public class Kysely {
 		this.nimi = nimi;
 		this.kuvaus = kuvaus;
 	//	this.luontipvm = LocalDate.now();
+		this.piilotettu = false;
+		
 	}
 
 	public Long getKysely_id() {
@@ -84,6 +88,16 @@ public class Kysely {
 	public void setKuvaus(String kuvaus) {
 		this.kuvaus = kuvaus;
 	}
+
+	public boolean isPiilotettu() {
+		return piilotettu;
+	}
+
+	public void setPiilotettu(boolean piilotettu) {
+		this.piilotettu = piilotettu;
+	}
+	
+	
 
 //	@Override
 //	public String toString() {

@@ -78,6 +78,15 @@ public class KyselyController {
 		kyselyRepository.deleteById(kysely_id);
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/piilotus/{id}", method = RequestMethod.GET)
+	public String piilotaKysely(@PathVariable("id") Long kysely_id, Model model) {
+		Optional<Kysely> kysely = kyselyRepository.findById(kysely_id);
+		Kysely muokattava = kysely.get();
+		muokattava.setPiilotettu(!muokattava.isPiilotettu());
+		kyselyRepository.save(muokattava);
+		return "redirect:/";
+	}
 
 
 
