@@ -14,7 +14,7 @@
 	</ul>
 	  
 	<h1>Luo uusi kysymys</h1>
-	<form th:object="${kysymys}" th:action="@{../savekysymys}" action="#" method="post">
+	<form th:object="${kysymys}" th:action="@{/savekysymys}" action="#" method="post">
 		<label for="teksti">Kysymys: </label>
 		<input type="text" id="teksti" th:field="*{teksti}" /></br>
 		<input type="hidden" th:field="*{kysely}" class="form-control" />
